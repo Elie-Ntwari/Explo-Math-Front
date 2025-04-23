@@ -1,12 +1,4 @@
-# React + Vite
+Explo-Math
+Explorateur Numérique Mathématique
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Le projet Explorateur Numérique Mathématique a pour objectif de dévelop per une application web interactive permettant aux utilisateurs d’explorer les propriétés mathématiques d’un nombre donné. Par exemple, lorsqu’un utilisateur entre un nombre tel que « 1 », l’application retournera toutes ses caractéristiques : nombre entier, impair, premier, représentation binaire, factorisation, racine carrée, etc. L’expérience utilisateur s’inspirera de l’approche de Visual Mind : une représenta tion graphique arborescente ou en bulles des propriétés mathématiques du nombre saisi, permettant une navigation intuitive et immersive
