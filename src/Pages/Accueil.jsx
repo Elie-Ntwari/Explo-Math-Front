@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import "../styles/Accueil.css";
 import { useEffect } from "react";
 import MyNavBar from "../components/MyNavBar"; // Import de la navbar
-
+import fondImg from '../assets/undraw_mathematics_hc2c.svg';
 function Accueil() {
     const navigate = useNavigate();
  
@@ -45,7 +45,7 @@ function Accueil() {
                     </div>
                 </div>
                 <img 
-                    src="https://img.freepik.com/free-vector/math-concept-illustration_114360-2131.jpg" 
+                    src={fondImg}
                     alt="Illustration mathématique" 
                     className="hero-image"
                 />
