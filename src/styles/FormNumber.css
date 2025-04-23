@@ -1,0 +1,188 @@
+/* 🧱 Conteneur principal */
+.formContainer {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px 20px;
+    background: linear-gradient(135deg, #f7faff, #e2ecf7);
+    border: 1px solid #d2e3f3;
+    border-radius: 18px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    position: relative;
+    overflow: hidden;
+    width: 100%; /* Ajouté pour une largeur fluide */
+}
+
+/* ✍️ Présentation */
+.presntation {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.presntation h1 {
+    font-size: 1.8rem;
+    color: #0c3998;
+    margin-bottom: 8px;
+    animation: slideFadeIn 0.8s ease;
+}
+
+.presntation p {
+    font-size: 1rem;
+    color: #444;
+    line-height: 1.5;
+    animation: fadeIn 1.2s ease;
+}
+
+/* 📩 Formulaire */
+.myForm form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    animation: fadeUp 1s ease;
+}
+
+.myForm input[type="number"],
+.myForm button {
+    width: 100%;
+    max-width: 300px;
+    padding: 12px 18px;
+    font-size: 1rem;
+    border-radius: 100px;
+    outline: none;
+    transition: 0.3s ease-in-out;
+}
+
+/* 🔢 Input */
+.myForm input[type="number"] {
+    border: 2px solid #0c3998;
+}
+
+.myForm input[type="number"]:focus {
+    border-color: #85bbe6;
+    background-color: #f0f8ff;
+}
+
+/* 🚀 Bouton */
+.myForm button {
+    background-color: #0c3998;
+    color: white;
+    font-weight: bold;
+    border: none;
+    box-shadow: 0 3px 0 #0e6cc6;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.myForm button:hover {
+    background-color: #85bbe6;
+    transform: scale(1.02);
+}
+
+.myForm button:active {
+    transform: scale(0.96);
+}
+
+/* 🌧️ Nombres en chute */
+.falling-numbers {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.falling-numbers span {
+    position: absolute;
+    font-size: 16px;
+    color: #0c3998;
+    animation: fall linear infinite;
+    opacity: 0.2;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-100px);
+    }
+    100% {
+        transform: translateY(400px);
+    }
+}
+
+/* ✨ Animations */
+@keyframes slideFadeIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeUp {
+    from {
+        transform: translateY(10px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* 📱 Responsivité */
+@media (max-width: 768px) {
+    .formContainer {
+        padding: 20px 15px; /* Réduire la marge */
+        margin-bottom: 20%;
+    }
+}
+@media (max-width: 768px) {
+    .formContainer {
+        padding: 20px 15px; /* Réduire la marge */
+    }
+
+    .presntation h1 {
+        font-size: 1.5rem;
+    }
+
+    .presntation p {
+        font-size: 0.9rem;
+    }
+
+    .myForm input[type="number"],
+    .myForm button {
+        max-width: 90%; /* S'adapte à des écrans plus petits */
+    }
+}
+
+@media (max-width: 480px) {
+    .presntation h1 {
+        font-size: 1.2rem;
+    }
+
+    .presntation p {
+        font-size: 0.85rem;
+    }
+
+    .myForm input[type="number"],
+    .myForm button {
+        max-width: 100%; /* Passe à 100% pour les très petits écrans */
+        padding: 10px 15px; /* Ajuste le padding */
+    }
+}

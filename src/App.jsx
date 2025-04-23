@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import Accueil from "./Pages/Accueil";
+import AnalyseNum from "./Pages/AnalyseNum";
 
 
 function App() {
@@ -23,7 +24,7 @@ function App() {
           <Route
              path="/AnalyseNum"
              element={
-              <></>
+              <AnalyseNum/>
              }
           />
 

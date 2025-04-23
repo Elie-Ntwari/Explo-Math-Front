@@ -1,0 +1,53 @@
+/* Conteneur de la navbar */
+.mynavbarContainer {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  background: linear-gradient(135deg, #f7faff, #e2ecf7);
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+/* Image du logo */
+.mynavbarContainer img {
+  width: 130px;
+  margin-top: 15px;
+}
+
+/* Bouton stylé */
+.mynavbarContainer button {
+  background-color: #0c3998;
+  color: white;
+  font-weight: bold;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 1000px;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #0e6cc6;
+  transition: transform 0.1s ease-in-out;
+}
+
+/* Hover et active */
+.mynavbarContainer button:hover {
+  background-color: #85bbe6;
+}
+
+.mynavbarContainer button:active {
+  transform: scale(0.97);
+}
+
+
+/* 🔽 Encore plus petit (téléphones) */
+@media screen and (max-width: 351px) {
+
+
+  .mynavbarContainer img {
+    width: 100px;
+  }
+
+  .mynavbarContainer button {
+    padding: 11px 22px;
+  }
+}
