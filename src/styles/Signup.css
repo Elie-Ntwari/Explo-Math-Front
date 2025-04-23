@@ -1,0 +1,153 @@
+.signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #f7faff, #e2ecf7);
+    font-family: 'Nunito', sans-serif;
+}
+
+.signup-card {
+    background: #ffffff;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+.signup-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #0c3998;
+    margin-bottom: 1rem;
+}
+
+.signup-subtitle {
+    font-size: 1rem;
+    color: #4b4b4b;
+    margin-bottom: 2rem;
+}
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.input-group {
+    position: relative;
+}
+
+.input-icon {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    color: #0c3998;
+}
+
+.signup-input {
+    width: 95%;
+    padding: 0.8rem 1rem 0.8rem 2.5rem;
+    font-size: 1rem;
+    border: 1px solid #d2e3f3;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.signup-input:focus {
+    border-color: #0c3998;
+}
+
+/* Champ de mot de passe avec icône pour afficher/masquer */
+.toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    color: #0c3998;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.toggle-password:hover {
+    color: #0856b3;
+}
+
+.signup-button {
+    background-color: #0c3998;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.8rem 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.signup-button:hover {
+    background-color: #0856b3;
+}
+
+.signup-footer {
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: #4b4b4b;
+}
+
+.signup-link {
+    color: #0c3998;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.signup-link:hover {
+    text-decoration: underline;
+}
+
+/* Boutons en haut à droite */
+.top-buttons {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.home-button {
+    background-color: #58cc02; /* Vert pour le bouton Accueil */
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: bold;
+    padding: 0.6rem 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.home-button:hover {
+    background-color: #46a302;
+}
+
+.login-button {
+    background-color: #0c3998; /* Bleu pour le bouton Connexion */
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: bold;
+    padding: 0.6rem 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: #0856b3; /* Bleu plus foncé au survol */
+}

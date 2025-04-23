@@ -16,6 +16,27 @@
   margin-top: 15px;
 }
 
+/* Container pour les liens de navigation */
+.myLinks {
+  display: flex;
+  gap: 20px;
+}
+
+/* Style pour les liens de navigation */
+.navLink {
+  background-color: transparent !important;
+  color: #0c3998 !important;
+  box-shadow: none !important;
+  font-weight: 600;
+  padding: 8px 16px !important;
+  transition: all 0.2s ease;
+}
+
+.navLink:hover {
+  background-color: rgba(12, 57, 152, 0.1) !important;
+  transform: translateY(-2px);
+}
+
 /* Bouton stylé */
 .mynavbarContainer button {
   background-color: #0c3998;
@@ -41,8 +62,6 @@
 
 /* 🔽 Encore plus petit (téléphones) */
 @media screen and (max-width: 351px) {
-
-
   .mynavbarContainer img {
     width: 100px;
   }
