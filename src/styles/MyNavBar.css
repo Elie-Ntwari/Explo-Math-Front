@@ -45,10 +45,11 @@
 .mynavbarContainer button {
   background-color: #0c3998;
   color: white;
-  font-weight: bold;
+  font-weight:600;
   padding: 12px 24px;
   border: none;
   border-radius: 1000px;
+  font-family: 'Poppins', sans-serif;
   cursor: pointer;
   box-shadow: 0 4px 0 #0e6cc6;
   transition: transform 0.1s ease-in-out;
