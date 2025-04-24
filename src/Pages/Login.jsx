@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import "../styles/Login.css";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
     const [showPassword, setShowPassword] = useState(false);
+
+    const navigate = useNavigate();
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -12,10 +15,10 @@ function Login() {
         <div className="login-container">
             {/* Boutons en haut à droite */}
             <div className="top-buttons">
-                <button className="signup-button" onClick={() => window.location.href = "/signup"}>
+                <button className="signup-button" onClick={() => navigate("/signup")}>
                     S'inscrire
                 </button>
-                <button className="home-button" onClick={() => window.location.href = "/"}>
+                <button className="home-button" onClick={() => navigate("/")}>
                     Accueil
                 </button>
             </div>
