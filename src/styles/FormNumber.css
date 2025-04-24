@@ -1,7 +1,14 @@
 /* 🧱 Conteneur principal */
+
+.container-parent {
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  }
 .formContainer {
+      
     max-width: 600px;
-    margin: 40px auto;
     padding: 30px 20px;
     background: linear-gradient(135deg, #f7faff, #e2ecf7);
     border: 1px solid #d2e3f3;
@@ -10,6 +17,7 @@
     position: relative;
     overflow: hidden;
     width: 100%; /* Ajouté pour une largeur fluide */
+    
 }
 
 /* ✍️ Présentation */
@@ -171,9 +179,33 @@
     }
 }
 
+@media (max-width: 670px) {
+    .formContainer {
+       width: 500px;
+       
+    }
+
+    .myForm input[type="number"],
+    .myForm button {
+       
+        margin-bottom:15px; 
+    }
+
+   
+}
+@media (max-width: 562px) {
+    .formContainer {
+       width: 400px;
+  
+    }
+
+   
+   
+}
+
 @media (max-width: 480px) {
     .presntation h1 {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
 
     .presntation p {
@@ -182,7 +214,25 @@
 
     .myForm input[type="number"],
     .myForm button {
-        max-width: 100%; /* Passe à 100% pour les très petits écrans */
+       
         padding: 10px 15px; /* Ajuste le padding */
     }
+}
+@media (max-width: 438px) {
+    .formContainer {
+       width: 300px;
+  
+    }
+
+   
+   
+}
+@media (max-width: 354px) {
+    .formContainer {
+       width: 280px;
+  
+    }
+
+   
+   
 }

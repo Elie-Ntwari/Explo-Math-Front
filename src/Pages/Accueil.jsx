@@ -3,9 +3,10 @@ import "../styles/Accueil.css";
 import { useEffect } from "react";
 import MyNavBar from "../components/MyNavBar"; // Import de la navbar
 import fondImg from '../assets/undraw_mathematics_hc2c.svg';
+import TestimonialCarousel from "../components/TestimonialCarousel";
 function Accueil() {
     const navigate = useNavigate();
- 
+
     const handleNavigate = (path) => {
         navigate(path);
     };
@@ -26,17 +27,17 @@ function Accueil() {
                         Explorez les <span>propriétés des nombres</span> de manière interactive
                     </h1>
                     <p className="hero-subtitle">
-                        Entrez un nombre et découvrez ses propriétés mathématiques fascinantes : divisibilité, 
+                        Entrez un nombre et découvrez ses propriétés mathématiques fascinantes : divisibilité,
                         représentations géométriques, applications et bien plus encore.
                     </p>
                     <div className="cta-buttons">
-                        <button 
-                            className="cta-button primary-button" 
+                        <button
+                            className="cta-button primary-button"
                             onClick={() => handleNavigate('/AnalyseNum')}
                         >
                             Commencer l'exploration
                         </button>
-                        <button 
+                        <button
                             className="cta-button secondary-button"
                             onClick={() => handleNavigate('/about')}
                         >
@@ -44,9 +45,9 @@ function Accueil() {
                         </button>
                     </div>
                 </div>
-                <img 
+                <img
                     src={fondImg}
-                    alt="Illustration mathématique" 
+                    alt="Illustration mathématique"
                     className="hero-image"
                 />
             </section>
@@ -108,29 +109,8 @@ function Accueil() {
             </section>
 
             {/* Testimonial Section */}
-            <section className="testimonial-section">
-                <h2 className="section-title">Ce que disent nos utilisateurs</h2>
-                <div className="testimonials">
-                    <div className="testimonial-card">
-                        <p className="testimonial-text">
-                            "Explo-Math m'a permis de mieux comprendre les propriétés des nombres. Une expérience fascinante !"
-                        </p>
-                        <p className="testimonial-author">Alice M., étudiante en mathématiques</p>
-                    </div>
-                    <div className="testimonial-card">
-                        <p className="testimonial-text">
-                            "Grâce à Explo-Math, j'ai découvert des applications pratiques des nombres que je n'aurais jamais imaginées."
-                        </p>
-                        <p className="testimonial-author">Jean P., ingénieur</p>
-                    </div>
-                    <div className="testimonial-card">
-                        <p className="testimonial-text">
-                            "Une plateforme incontournable pour tous ceux qui veulent explorer les mathématiques de manière ludique."
-                        </p>
-                        <p className="testimonial-author">Prof. Martin, Université de Lyon</p>
-                    </div>
-                </div>
-            </section>
+            <TestimonialCarousel/>
+
 
             {/* Final CTA Section */}
             <section className="final-cta">
@@ -138,8 +118,8 @@ function Accueil() {
                 <p className="final-cta-subtitle">
                     Rejoignez des milliers d'utilisateurs qui découvrent les mathématiques autrement avec Explo-Math.
                 </p>
-                <button 
-                    className="cta-button cta-white-button" 
+                <button
+                    className="cta-button cta-white-button"
                     onClick={() => handleNavigate('/AnalyseNum')}
                 >
                     Commencer maintenant

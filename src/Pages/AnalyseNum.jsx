@@ -2,16 +2,16 @@ import FormNumber from "../components/FormNumber";
 import MyNavBar from "../components/MyNavBar";
 
 
-function AnalyseNum(){
+function AnalyseNum() {
 
-    return (
-        <>
-          <MyNavBar/>
-          <FormNumber/>
-        </>
-      
+  return (
+    <div className="accueil-container">
+      <MyNavBar />
+      <FormNumber />
+    </div>
 
-    );
+
+  );
 }
 
 
