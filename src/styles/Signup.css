@@ -4,7 +4,7 @@
     align-items: center;
     height: 100vh;
     background: linear-gradient(135deg, #f7faff, #e2ecf7);
-    font-family: 'Nunito', sans-serif;
+ 
 }
 
 .signup-card {
@@ -121,21 +121,25 @@
 }
 
 .home-button {
-    background-color: #58cc02; /* Vert pour le bouton Accueil */
-    color: #ffffff;
+    background-color: #f5f7f9; /* Vert pour le bouton Accueil */
+    color: #0e6cc6;
     font-size: 0.9rem;
     font-weight: bold;
     padding: 0.6rem 1rem;
-    border: none;
-    border-radius: 8px;
+    border: solid 2px #85bbe6;
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .home-button:hover {
-    background-color: #46a302;
+    background-color: #85bbe6;
+    color: #fff;
 }
-
+.home-button:active{
+    transform: scale(0.97);
+}
 .login-button {
     background-color: #0c3998; /* Bleu pour le bouton Connexion */
     color: #ffffff;
@@ -143,11 +147,16 @@
     font-weight: bold;
     padding: 0.6rem 1rem;
     border: none;
-    border-radius: 8px;
+    font-family:  'Poppins', sans-serif;
+    border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .login-button:hover {
     background-color: #0856b3; /* Bleu plus foncé au survol */
+}
+
+.login-button:hover{
+    transform: scale(0.97);
 }

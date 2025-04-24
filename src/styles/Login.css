@@ -4,7 +4,7 @@
     align-items: center;
     height: 100vh;
     background: linear-gradient(135deg, #f7faff, #e2ecf7);
-    font-family: 'Nunito', sans-serif;
+
 }
 
 .login-card {
@@ -17,16 +17,7 @@
     max-width: 400px;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+
 
 .login-title {
     font-size: 2rem;
@@ -115,45 +106,3 @@
     text-decoration: underline;
 }
 
-/* Conteneur pour les boutons en haut à droite */
-.top-buttons {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    display: flex;
-    gap: 10px;
-}
-
-/* Bouton "S'inscrire" */
-.signup-button {
-    background-color: #0c3998;
-    color: #ffffff;
-    font-size: 0.9rem;
-    font-weight: bold;
-    padding: 0.6rem 1rem;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.signup-button:hover {
-    background-color: #0856b3;
-}
-
-/* Bouton "Accueil" */
-.home-button {
-    background-color: #58cc02;
-    color: #ffffff;
-    font-size: 0.9rem;
-    font-weight: bold;
-    padding: 0.6rem 1rem;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.home-button:hover {
-    background-color: #46a302;
-}
