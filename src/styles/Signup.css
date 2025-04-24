@@ -1,16 +1,31 @@
+input[type="password"] {
+    /* Pour certains navigateurs, enlever l'apparence spéciale */
+    -webkit-text-security: disc;
+  }
+  
+  input[type="password"]::-ms-reveal,
+  input[type="password"]::-ms-clear,
+  input[type="password"]::-webkit-credentials-auto-fill-button,
+  input[type="password"]::-webkit-clear-button,
+  input[type="password"]::-webkit-password-toggle-button {
+    display: none;
+    appearance: none;
+  }
+  
 .signup-container {
+    margin: 90px;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(135deg, #f7faff, #e2ecf7);
+  
  
 }
 
 .signup-card {
-    background: #ffffff;
+    background: #fAFAFA;
     padding: 2.5rem;
-    border-radius: 12px;
+    border-radius: 15px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     text-align: center;
     width: 100%;
@@ -50,18 +65,25 @@
 }
 
 .signup-input {
-    width: 95%;
+    width: 84%;
     padding: 0.8rem 1rem 0.8rem 2.5rem;
+    font-family: 'Poppins', sans-serif;
     font-size: 1rem;
-    border: 1px solid #d2e3f3;
-    border-radius: 8px;
+    border: 2px solid #0c3998;
+    border-radius: 10px;
+    color: #4b4b4b;
     outline: none;
     transition: border-color 0.3s ease;
 }
 
 .signup-input:focus {
-    border-color: #0c3998;
+    border-color: #85bbe6;
+    background-color: #f0f8ff;
 }
+
+
+
+
 
 /* Champ de mot de passe avec icône pour afficher/masquer */
 .toggle-password {
@@ -88,11 +110,16 @@
     border: none;
     border-radius: 8px;
     cursor: pointer;
+    box-shadow: 0 4px 0 #0e6cc6;
     transition: background-color 0.3s ease;
 }
 
 .signup-button:hover {
-    background-color: #0856b3;
+    background-color:#85bbe6;
+}
+
+.signup-button:active {
+    transform: scale(0.97);
 }
 
 .signup-footer {
@@ -129,7 +156,7 @@
     border: solid 2px #85bbe6;
     border-radius: 10px;
     font-family: 'Poppins', sans-serif;
-    cursor: pointer;
+    box-shadow: 0 4px 0 #0e6cc6;
     transition: background-color 0.3s ease;
 }
 
@@ -141,10 +168,10 @@
     transform: scale(0.97);
 }
 .login-button {
-    background-color: #0c3998; /* Bleu pour le bouton Connexion */
+    background-color: #0c3998;/* Bleu pour le bouton Connexion */
     color: #ffffff;
     font-size: 0.9rem;
-    font-weight: bold;
+    font-weight: 500;
     padding: 0.6rem 1rem;
     border: none;
     font-family:  'Poppins', sans-serif;
@@ -155,9 +182,51 @@
 }
 
 .login-button:hover {
-    background-color: #0856b3; /* Bleu plus foncé au survol */
+    background-color: #85bbe6; /* Bleu plus foncé au survol */
 }
 
-.login-button:hover{
+.login-button:active{
     transform: scale(0.97);
 }
+
+
+@media screen and (max-width: 610px) {
+    .signup-input {
+        width: 80%;
+    }
+  
+    .signup-container {
+        margin: 70px;
+    }
+ 
+  }
+
+  @media screen and (max-width: 530px) {
+    .signup-input {
+        width: 78%;
+    }
+
+    .signup-container {
+        margin: 40px;
+    }
+  
+ 
+  }
+  @media screen and (max-width: 376px) {
+  
+
+    .signup-container {
+        margin: 20px;
+    }
+  
+ 
+  }
+  @media screen and (max-width: 300px) {
+  
+
+    .signup-container {
+        margin: 10px;
+    }
+  
+ 
+  }

@@ -15,17 +15,17 @@ function Login() {
         <div className="login-container">
             {/* Boutons en haut à droite */}
             <div className="top-buttons">
-                <button className="signup-button" onClick={() => navigate("/signup")}>
+                <button className="signup-button" onClick={() => navigate("/signup")} style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 500 }}>
                     S'inscrire
                 </button>
-                <button className="home-button" onClick={() => navigate("/")}>
+                <button className="home-button" onClick={() => navigate("/")}  style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 500 }} >
                     Accueil
                 </button>
             </div>
 
             <div className="login-card">
-                <h1 className="login-title">Connexion à Explo-Math</h1>
-                <p className="login-subtitle">Entrez vos identifiants pour continuer</p>
+                <h1 className="login-title">Connexion </h1>
+                <p className="login-subtitle">Bienvenue à nouveau sur Explo-Math les maths n'attendent que vous !</p>
                 <form className="login-form">
                     <div className="input-group">
                         <i className="fas fa-envelope input-icon"></i>
