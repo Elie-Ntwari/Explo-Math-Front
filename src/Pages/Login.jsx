@@ -56,7 +56,7 @@ function Login() {
                 <div className="login-footer">
                     <p>
                         Pas encore inscrit ?{" "}
-                        <a href="/signup" className="login-link">
+                        <a onClick={()=> navigate("/signup")} className="login-link">
                             Créez un compte
                         </a>
                     </p>
