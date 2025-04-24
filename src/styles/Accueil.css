@@ -116,7 +116,7 @@
 
 .section-title {
   font-size: 2.5rem;
-  font-weight: 800;
+  font-weight: 700;
   color: var(--primary-color);
   margin-bottom: 3rem;
 }
@@ -161,8 +161,10 @@
 
 /* How It Works Section */
 .how-it-works {
+  display: block;
   padding: 4rem 6rem;
   background-color: var(--background-color);
+  text-align: center;
 }
 
 .steps-container {
@@ -209,43 +211,6 @@
   line-height: 1.6;
 }
 
-/* Testimonial Section */
-/* .testimonial-section {
-  padding: 4rem 6rem;
-  background-color: var(--white);
-  text-align: center;
-}
-
-.testimonials {
-  display: flex;
-  overflow-x: auto;
-  gap: 2rem;
-  padding: 1rem 0;
-  scroll-snap-type: x mandatory;
-}
-
-.testimonial-card {
-  min-width: 300px;
-  flex: 0 0 30%;
-  padding: 2rem;
-  border-radius: 12px;
-  background-color: var(--background-color);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-  scroll-snap-align: start;
-}
-
-.testimonial-text {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-  font-style: italic;
-}
-
-.testimonial-author {
-  font-weight: 700;
-  color: var(--primary-color);
-} */
-
 /* Final CTA Section */
 .final-cta {
   padding: 6rem;
@@ -256,12 +221,12 @@
 
 .final-cta-title {
   font-size: 3rem;
-  font-weight: 800;
+  font-weight: 700;
   margin-bottom: 1.5rem;
 }
 
 .final-cta-subtitle {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   margin-bottom: 2.5rem;
   max-width: 800px;
   margin-left: auto;
