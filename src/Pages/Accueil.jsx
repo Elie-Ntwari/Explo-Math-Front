@@ -4,6 +4,8 @@ import { useEffect } from "react";
 import MyNavBar from "../components/MyNavBar"; // Import de la navbar
 import fondImg from '../assets/undraw_mathematics_hc2c.svg';
 import TestimonialCarousel from "../components/TestimonialCarousel";
+import { FaCalculator, FaShapes, FaChartBar } from "react-icons/fa"; // Import des icônes depuis react-icons
+
 function Accueil() {
     const navigate = useNavigate();
 
@@ -57,21 +59,27 @@ function Accueil() {
                 <h2 className="section-title">Pourquoi explorer les nombres avec Explo-Math ?</h2>
                 <div className="features-grid">
                     <div className="feature-card">
-                        <div className="feature-icon">🔢</div>
+                        <div className="feature-icon">
+                            <FaCalculator size={40} />
+                        </div>
                         <h3 className="feature-title">Propriétés des nombres</h3>
                         <p className="feature-description">
                             Découvrez les propriétés uniques des nombres : divisibilité, primalité, et bien plus.
                         </p>
                     </div>
                     <div className="feature-card">
-                        <div className="feature-icon">📐</div>
+                        <div className="feature-icon">
+                            <FaShapes size={40} />
+                        </div>
                         <h3 className="feature-title">Représentations géométriques</h3>
                         <p className="feature-description">
                             Visualisez les nombres sous forme de figures géométriques et comprenez leurs applications.
                         </p>
                     </div>
                     <div className="feature-card">
-                        <div className="feature-icon">📊</div>
+                        <div className="feature-icon">
+                            <FaChartBar size={40} />
+                        </div>
                         <h3 className="feature-title">Applications pratiques</h3>
                         <p className="feature-description">
                             Explorez comment les nombres sont utilisés dans divers domaines comme la cryptographie et la physique.

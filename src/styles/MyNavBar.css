@@ -10,8 +10,7 @@
   padding: 0 20px;
   box-sizing: border-box;
   z-index: 1000;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-
+  border-bottom: rgb(214, 214, 214) 2.5px solid;
 }
 
 /* Image du logo */
