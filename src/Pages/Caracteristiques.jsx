@@ -1,3 +1,4 @@
+import MyNavBar from "../components/MyNavBar";
 
 function caracteristiques() {
 
