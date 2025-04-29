@@ -11,10 +11,10 @@ function MyNavBar() {
     <div className="mynavbarContainer">
       <div className="myLogo">
 
-        {location.pathname === '/AnalyseNum' && (
+        {location.pathname !== '/' && (
           <FaChevronLeft
             size={20}
-            style={{ cursor: 'pointer', marginRight: '10px' }}
+            style={{ cursor: 'pointer', marginRight: '10px',marginTop:'30px',color:'#0c3998' }}
             onClick={() => navigate('/')} // Retour à l'accueil
           />
           
