@@ -15,7 +15,7 @@ function MyNavBar() {
           <FaChevronLeft
             size={20}
             style={{ cursor: 'pointer', marginRight: '10px',marginTop:'30px',color:'#0c3998' }}
-            onClick={() => navigate('/')} // Retour à l'accueil
+            onClick={() => navigate(location.pathname === '/caracteristiques' ? '/AnalyseNum' : '/')} // Retour à l'accueil
           />
           
         )}
