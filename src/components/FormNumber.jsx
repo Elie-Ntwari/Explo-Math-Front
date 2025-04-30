@@ -82,7 +82,7 @@ function FormNumber() {
             ) : (
                 <div className="myLoader-overlay">
                     <div className="myLoader-box">
-                        <TbMathFunction className="loader-icon rotate pulse" />
+                        <TbMathFunction className="loader-icon rotate pulse"  />
                         <h1 className="analyzing-text">
                             Analyse en cours<span className="dot-animation">...</span>
                         </h1>

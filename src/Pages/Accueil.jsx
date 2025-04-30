@@ -117,7 +117,7 @@ function Accueil() {
             </section>
 
             {/* Testimonial Section */}
-            <TestimonialCarousel/>
+            {/* <TestimonialCarousel/> */}
 
 
             {/* Final CTA Section */}

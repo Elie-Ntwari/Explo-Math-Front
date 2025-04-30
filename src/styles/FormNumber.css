@@ -11,13 +11,13 @@
     justify-content: center;
     width: 100%;
     height: 100vh;
-    background: linear-gradient(135deg, #f7faff, #e2ecf7);
+    background: #F8F9FA;
 }
 .formContainer {
       
     max-width: 600px;
     padding: 30px 20px;
-    background: linear-gradient(135deg, #f7faff, #e2ecf7);
+    background: #fafafa;
     border: 1px solid #d2e3f3;
     border-radius: 18px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
@@ -35,7 +35,7 @@
 
 .presntation h1 {
     font-size: 1.8rem;
-    color: #0c3998;
+    color: #2f2e41;
     margin-bottom: 8px;
     animation: slideFadeIn 0.8s ease;
 }
@@ -69,29 +69,30 @@
 
 /* 🔢 Input */
 .myForm input[type="number"] {
-    border: 2px solid #0c3998;
+    border: 2px solid  #2f2e41;
 }
 
 .myForm input[type="number"]:focus {
-    border-color: #85bbe6;
+    border-color: #575A89;
     background-color: #f0f8ff;
 }
 
 /* 🚀 Bouton */
 .myForm button {
-    background-color: #0c3998;
+    background-color: #2f2e41;
     color: white;
     font-weight: bold;
     border: none;
-    box-shadow: 0 3px 0 #0e6cc6;
+    box-shadow: 0 3px 0 #090909 ;
     cursor: pointer;
     display: flex;
+    font-family:  'Nunito', sans-serif;;
     justify-content: center;
     align-items: center;
 }
 
 .myForm button:hover {
-    background-color: #85bbe6;
+    background-color: #575A89;
     transform: scale(1.02);
 }
 
@@ -114,7 +115,7 @@
 .falling-numbers span {
     position: absolute;
     font-size: 16px;
-    color: #0c3998;
+    color: #2f2e41;
     animation: fall linear infinite;
     opacity: 0.2;
 }
@@ -210,7 +211,7 @@
     left: 0;
     width: 100%;
     height: 100vh;
-    background: #85bae681;
+    background:linear-gradient(135deg, #2f2e41a9, #575a89ac);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -220,7 +221,7 @@
   
   /* Boîte centrale */
   .myLoader-box {
-    background: linear-gradient(135deg, #0c3998, #0e6cc6);
+    background: linear-gradient(135deg, #2f2e41, #575A89);
     border-radius: 20px;
     padding: 25px 20px;
     box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
@@ -232,9 +233,12 @@
   }
   
   /* Icône combinée avec rotation + blink */
+  .loader-icon{
+    color: #575A89;
+  }
   .loader-icon.spinAndBlink {
     font-size: 60px;
-    color: #85bbe6;
+    color: #575A89;
     margin-bottom: 12px;
     animation: spin 2.5s linear infinite, blinkIcon 1.2s ease-in-out infinite;
   }
@@ -249,7 +253,7 @@
   
   /* Animation des points */
   .dot-animation {
-    color: #85bbe6;
+    color: #575A89;
     font-weight: bold;
     animation: blinkDots 1s steps(1, end) infinite;
   }

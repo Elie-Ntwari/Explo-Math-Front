@@ -4,7 +4,7 @@
   width: 100%;
   height: 80px;
   display: flex;
-  background: linear-gradient(135deg, #f7faff, #e2ecf7);
+  background: #FAFAFA;
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
@@ -15,8 +15,9 @@
 
 /* Image du logo */
 .mynavbarContainer img {
-  width: 130px;
-  margin-top: 15px;
+  width: 98px;
+  margin-top: 12px;
+  margin-left: 10px;
 }
 
 /* Container pour les liens de navigation */
@@ -42,21 +43,21 @@
 
 /* Bouton stylé */
 .mynavbarContainer button {
-  background-color: #0c3998;
+  background-color:#2f2e41;
   color: white;
   font-weight:600;
   padding: 12px 24px;
   border: none;
   border-radius: 1000px;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Nunito', sans-serif;
   cursor: pointer;
-  box-shadow: 0 4px 0 #0e6cc6;
+  box-shadow: 0 4px 0 #090909 ;
   transition: transform 0.1s ease-in-out;
 }
 
 /* Hover et active */
 .mynavbarContainer button:hover {
-  background-color: #85bbe6;
+  background-color: #575A89;
 }
 
 .mynavbarContainer button:active {

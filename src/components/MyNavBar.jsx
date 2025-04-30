@@ -14,12 +14,12 @@ function MyNavBar() {
         {location.pathname !== '/' && (
           <FaChevronLeft
             size={20}
-            style={{ cursor: 'pointer', marginRight: '10px',marginTop:'30px',color:'#0c3998' }}
+            style={{ cursor: 'pointer', marginRight: '10px',marginBottom:'30px',color:'#0c3998' }}
             onClick={() => navigate(location.pathname === '/caracteristiques' ? '/AnalyseNum' : '/')} // Retour à l'accueil
           />
           
         )}
-        <img src={logo} alt="Logo" onClick={() => navigate('/')} style={{ cursor: 'pointer' }} />
+        <img src={logo} alt="Logo" onClick={() => navigate('/')} style={{ cursor: 'pointer' ,color:'#333'}} />
       </div>
 
       {location.pathname === '/' && (
