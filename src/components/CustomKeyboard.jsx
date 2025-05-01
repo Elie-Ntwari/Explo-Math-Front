@@ -17,7 +17,7 @@ function CustomKeyboard({ onInput, onClose, onDelete, onClear }) {
             <div className="keyboard-row">
                 <button onClick={() => handleButtonClick("log(")}>log</button>
                 <button onClick={() => handleButtonClick("ln(")}>ln</button>
-                <button onClick={() => handleButtonClick("log_b(base,x)")}>
+                <button onClick={() => handleButtonClick("log_b(base;x)")}>
                     log<sub>b</sub>(x)
                 </button>
                 <button onClick={() => handleButtonClick("π")}>π</button>

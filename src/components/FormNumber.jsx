@@ -83,7 +83,7 @@ function FormNumber() {
                 .replace(/cos\(/g, "Math.cos(") // Remplace cos par Math.cos
                 .replace(/tan\(/g, "Math.tan(") // Remplace tan par Math.tan
                 .replace(/ln\(/g, "calculateLn(") // Utilise calculateLn pour ln
-                .replace(/log_b\(([^,]+),\s*([^)]+)\)/g, "calculateLogBase($1, $2)") // Utilise calculateLogBase pour log_b
+                .replace(/log_b\(([^,]+);\s*([^)]+)\)/g, "calculateLogBase($1, $2)") // Utilise calculateLogBase pour log_b
                 .replace(/log\(/g, "Math.log10(") // Remplace log par Math.log10
                 .replace(/√\(/g, "Math.sqrt(") // Remplace √ par Math.sqrt
                 .replace(/([a-zA-Zπ]+|\d+)\s*\^\s*([a-zA-Zπ]+|\d+)/g, "Math.pow($1, $2)"); // Remplace a^b par Math.pow(a, b)
