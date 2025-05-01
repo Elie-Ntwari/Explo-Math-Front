@@ -52,7 +52,10 @@ function FormNumber() {
             const newValue =
                 nombre.substring(0, start) + value + nombre.substring(end);
 
-            setNombre(newValue);
+            // Remplace les virgules par des points
+            const sanitizedValue = newValue.replace(/,/g, ".");
+
+            setNombre(sanitizedValue);
 
             // Met à jour la position du curseur après l'insertion
             setTimeout(() => {
@@ -130,7 +133,7 @@ function FormNumber() {
                                     placeholder="Ex : 42"
                                     required
                                     value={nombre}
-                                    onChange={(e) => setNombre(e.target.value)}
+                                    onChange={(e) => setNombre(e.target.value.replace(/,/g, "."))}
                                 />
                                 <button type="submit">
                                     Lancer l'exploration <FaArrowRight style={{ marginLeft: '8px' }} />
