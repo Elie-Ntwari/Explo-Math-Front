@@ -95,14 +95,14 @@ function FormNumber() {
         }
     };
 
-    const calculateLogBase = (base, value) => {
+    window.calculateLogBase = (base, value) => {
         if (base <= 0 || value <= 0) {
             throw new Error("La base et la valeur doivent être positives.");
         }
         return Math.log(value) / Math.log(base);
     };
 
-    const calculateLn = (value) => {
+    window.calculateLn = (value) => {
         if (value <= 0) {
             throw new Error("La valeur doit être positive pour calculer le logarithme naturel.");
         }
@@ -160,18 +160,28 @@ function FormNumber() {
                         )}
 
                         <div className="falling-numbers">
-                            {[...Array(15)].map((_, i) => (
-                                <span
-                                    key={i}
-                                    style={{
-                                        left: `${Math.random() * 100}%`,
-                                        animationDuration: `${3 + Math.random() * 5}s`,
-                                        animationDelay: `${Math.random() * 2}s`,
-                                    }}
-                                >
-                                    {Math.floor(Math.random() * 100)}
-                                </span>
-                            ))}
+                            {[...Array(15)].map((_, i) => {
+                                // Liste des symboles mathématiques à inclure
+                                const symbols = ["π", "e", "cos", "sin", "tan", "√", "^", "log"];
+                                // Génère soit un chiffre aléatoire, soit un symbole aléatoire
+                                const randomItem =
+                                    Math.random() > 0.5
+                                        ? Math.floor(Math.random() * 100) // Génère un chiffre
+                                        : symbols[Math.floor(Math.random() * symbols.length)]; // Sélectionne un symbole
+
+                                return (
+                                    <span
+                                        key={i}
+                                        style={{
+                                            left: `${Math.random() * 100}%`,
+                                            animationDuration: `${3 + Math.random() * 5}s`,
+                                            animationDelay: `${Math.random() * 2}s`,
+                                        }}
+                                    >
+                                        {randomItem}
+                                    </span>
+                                );
+                            })}
                         </div>
                     </div>
                 </div>
