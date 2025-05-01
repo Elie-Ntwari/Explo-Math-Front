@@ -1,5 +1,5 @@
 import { FaArrowRight, FaKeyboard } from 'react-icons/fa';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { TbMathFunction } from 'react-icons/tb';
 import { useNavigate } from 'react-router-dom';
 import '../styles/FormNumber.css';
@@ -12,6 +12,7 @@ function FormNumber() {
     const [showKeyboard, setShowKeyboard] = useState(false); // État pour afficher/masquer le clavier
     const navigate = useNavigate();
     const [nombre, setNombre] = useState("");
+    const inputRef = useRef(null);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -42,11 +43,21 @@ function FormNumber() {
     };
 
     const handleKeyboardInput = (value) => {
-        if (value === "a/b") {
-            // Insère une structure de fraction
-            setNombre((prev) => prev + "(/)");
-        } else {
-            setNombre((prev) => prev + value);
+        if (inputRef.current) {
+            const input = inputRef.current;
+            const start = input.selectionStart; // Position de début du curseur
+            const end = input.selectionEnd; // Position de fin du curseur
+
+            // Insère la valeur à la position du curseur
+            const newValue =
+                nombre.substring(0, start) + value + nombre.substring(end);
+
+            setNombre(newValue);
+
+            // Met à jour la position du curseur après l'insertion
+            setTimeout(() => {
+                input.selectionStart = input.selectionEnd = start + value.length;
+            }, 0);
         }
     };
 
@@ -60,17 +71,21 @@ function FormNumber() {
 
     const evaluateExpression = (expression) => {
         try {
-            // Remplace les constantes et fonctions par leurs équivalents mathématiques
+            // Remplace d'abord les constantes π et e par leurs valeurs numériques avec des parenthèses
             const formattedExpression = expression
-                .replace(/π/g, Math.PI) // Remplace π par sa valeur
-                .replace(/e/g, Math.E) // Remplace e par sa valeur
+                .replace(/π/g, `(${Math.PI})`) // Remplace π par (Math.PI)
+                .replace(/e/g, `(${Math.E})`) // Remplace e par (Math.E)
+                // Ensuite, remplace les fonctions et opérations
                 .replace(/sin\(/g, "Math.sin(") // Remplace sin par Math.sin
                 .replace(/cos\(/g, "Math.cos(") // Remplace cos par Math.cos
                 .replace(/tan\(/g, "Math.tan(") // Remplace tan par Math.tan
-                .replace(/ln\(/g, "Math.log(") // Remplace ln par Math.log
-                .replace(/log_b\(([^,]+),([^,]+)\)/g, "(Math.log($2) / Math.log($1))") // Remplace log_b(base, valeur)
+                .replace(/ln\(/g, "calculateLn(") // Utilise calculateLn pour ln
+                .replace(/log_b\(([^,]+),\s*([^)]+)\)/g, "calculateLogBase($1, $2)") // Utilise calculateLogBase pour log_b
                 .replace(/log\(/g, "Math.log10(") // Remplace log par Math.log10
-                .replace(/√\(/g, "Math.sqrt("); // Remplace √ par Math.sqrt
+                .replace(/√\(/g, "Math.sqrt(") // Remplace √ par Math.sqrt
+                .replace(/([a-zA-Zπ]+|\d+)\s*\^\s*([a-zA-Zπ]+|\d+)/g, "Math.pow($1, $2)"); // Remplace a^b par Math.pow(a, b)
+
+            console.log("Expression formatée :", formattedExpression);
 
             // Évalue l'expression
             return eval(formattedExpression);
@@ -78,6 +93,20 @@ function FormNumber() {
             console.error("Erreur lors de l'évaluation de l'expression :", error);
             return "Erreur";
         }
+    };
+
+    const calculateLogBase = (base, value) => {
+        if (base <= 0 || value <= 0) {
+            throw new Error("La base et la valeur doivent être positives.");
+        }
+        return Math.log(value) / Math.log(base);
+    };
+
+    const calculateLn = (value) => {
+        if (value <= 0) {
+            throw new Error("La valeur doit être positive pour calculer le logarithme naturel.");
+        }
+        return Math.log(value); // Utilise Math.log pour le logarithme naturel
     };
 
     return (
@@ -96,6 +125,7 @@ function FormNumber() {
                         <div className="myForm">
                             <form onSubmit={handleSubmit}>
                                 <input
+                                    ref={inputRef}
                                     type="text"
                                     placeholder="Ex : 42"
                                     required
