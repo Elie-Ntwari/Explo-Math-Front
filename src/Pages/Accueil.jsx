@@ -150,7 +150,7 @@ function Accueil() {
                     className="cta-button cta-white-button"
                     onClick={() => handleNavigate('/AnalyseNum')}
                 >
-                    Commencer maintenant
+                    Commencer l'exploration
                 </button>
             </section>
 

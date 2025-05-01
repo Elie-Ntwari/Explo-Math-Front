@@ -9,15 +9,15 @@ function CustomKeyboard({ onInput, onClose, onDelete, onClear }) {
     return (
         <div className="custom-keyboard">
             <div className="keyboard-row">
-                <button onClick={() => handleButtonClick("sin(")}>sin</button>
-                <button onClick={() => handleButtonClick("cos(")}>cos</button>
-                <button onClick={() => handleButtonClick("tan(")}>tan</button>
-                <button onClick={() => handleButtonClick("√(")}>√</button>
+                <button onClick={() => handleButtonClick("sin()")}>sin</button>
+                <button onClick={() => handleButtonClick("cos()")}>cos</button>
+                <button onClick={() => handleButtonClick("tan()")}>tan</button>
+                <button onClick={() => handleButtonClick("√()")}>√</button>
             </div>
             <div className="keyboard-row">
-                <button onClick={() => handleButtonClick("log(")}>log</button>
-                <button onClick={() => handleButtonClick("ln(")}>ln</button>
-                <button onClick={() => handleButtonClick("log_b(")}>log_b</button>
+                <button onClick={() => handleButtonClick("log()")}>log</button>
+                <button onClick={() => handleButtonClick("ln()")}>ln</button>
+                <button onClick={() => handleButtonClick("log_b(base,x)")}>log_b</button>
                 <button onClick={() => handleButtonClick("π")}>π</button>
             </div>
             <div className="keyboard-row">

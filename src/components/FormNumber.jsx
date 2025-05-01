@@ -68,8 +68,9 @@ function FormNumber() {
                 .replace(/cos\(/g, "Math.cos(") // Remplace cos par Math.cos
                 .replace(/tan\(/g, "Math.tan(") // Remplace tan par Math.tan
                 .replace(/ln\(/g, "Math.log(") // Remplace ln par Math.log
-                .replace(/log_b\(([^,]+),([^,]+)\)/g, "(Math.log($1) / Math.log($2))") // Remplace log_b(x, b)
-                .replace(/log\(/g, "Math.log10("); // Remplace log par Math.log10
+                .replace(/log_b\(([^,]+),([^,]+)\)/g, "(Math.log($2) / Math.log($1))") // Remplace log_b(base, valeur)
+                .replace(/log\(/g, "Math.log10(") // Remplace log par Math.log10
+                .replace(/√\(/g, "Math.sqrt("); // Remplace √ par Math.sqrt
 
             // Évalue l'expression
             return eval(formattedExpression);
@@ -121,8 +122,10 @@ function FormNumber() {
                         {/* Clavier personnalisé */}
                         {showKeyboard && (
                             <CustomKeyboard
-                                onInput={handleKeyboardInput}
-                                onClose={() => setShowKeyboard(false)} // Ferme le clavier
+                                onInput={handleKeyboardInput} // Fonction pour gérer l'entrée
+                                onDelete={handleDelete} // Fonction pour effacer le dernier caractère
+                                onClear={handleClear} // Fonction pour tout effacer
+                                onClose={() => setShowKeyboard(false)} // Fonction pour fermer le clavier
                             />
                         )}
 
