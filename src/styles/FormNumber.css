@@ -14,7 +14,7 @@
     background: #F8F9FA;
 }
 .formContainer {
-      
+    position: relative; /* Nécessaire pour positionner le clavier */
     max-width: 600px;
     padding: 30px 20px;
     background: #fafafa;
@@ -56,7 +56,7 @@
     animation: fadeUp 1s ease;
 }
 
-.myForm input[type="number"],
+.myForm input[type="text"],
 .myForm button {
     width: 100%;
     max-width: 300px;
@@ -68,11 +68,11 @@
 }
 
 /* 🔢 Input */
-.myForm input[type="number"] {
+.myForm input[type="text"] {
     border: 2px solid  #2f2e41;
 }
 
-.myForm input[type="number"]:focus {
+.myForm input[type="text"]:focus {
     border-color: #575A89;
     background-color: #f0f8ff;
 }
@@ -343,7 +343,7 @@
         font-size: 0.9rem;
     }
 
-    .myForm input[type="number"],
+    .myForm input[type="text"],
     .myForm button {
         max-width: 90%; /* S'adapte à des écrans plus petits */
     }
@@ -355,7 +355,7 @@
        
     }
 
-    .myForm input[type="number"],
+    .myForm input[type="text"],
     .myForm button {
        
         margin-bottom:15px; 
@@ -405,4 +405,92 @@
 
    
    
+}
+
+/* Bouton flottant pour le clavier */
+.floating-keyboard-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+}
+
+.floating-keyboard-button:hover {
+    background-color: var(--primary-color);
+}
+
+/* Clavier personnalisé */
+.custom-keyboard {
+    position: relative;
+    top: 100%; /* Juste en dessous du formulaire */
+    left: 0;
+    width: 100%;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    z-index: 1000;
+    animation: slide-down 0.3s ease;
+}
+
+.keyboard-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.custom-keyboard button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    flex: 1; /* Tous les boutons ont la même largeur */
+    margin: 0 4px; /* Espacement entre les boutons */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.custom-keyboard button:hover {
+    background-color: var(--secondary-color);
+    transform: scale(1.05);
+}
+
+.custom-keyboard button:active {
+    transform: scale(0.95);
+}
+
+.close-keyboard {
+    background-color: #dc3545;
+    color: white;
+}
+
+.close-keyboard:hover {
+    background-color: #a71d2a;
+}
+
+/* Animation pour le clavier */
+@keyframes slide-down {
+    from {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }

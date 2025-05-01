@@ -1,20 +1,41 @@
 import { useNavigate } from "react-router-dom";
 import "../styles/Accueil.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react"; // Ajout de useState
 import MyNavBar from "../components/MyNavBar"; // Import de la navbar
 import fondImg from '../assets/undraw_mathematics_hc2c.svg';
 import TestimonialCarousel from "../components/TestimonialCarousel";
-import { FaCalculator, FaShapes, FaChartBar } from "react-icons/fa"; // Import des icônes depuis react-icons
+import { FaCalculator, FaShapes, FaChartBar, FaChevronUp } from "react-icons/fa"; // Import de l'icône pour le bouton
 
 function Accueil() {
     const navigate = useNavigate();
+    const [showScrollToTop, setShowScrollToTop] = useState(false); // État pour le bouton flottant
 
     const handleNavigate = (path) => {
         navigate(path);
     };
 
+    const handleScroll = () => {
+        const heroSection = document.querySelector('.hero-section');
+        if (heroSection) {
+            const heroBottom = heroSection.getBoundingClientRect().bottom;
+            setShowScrollToTop(heroBottom < 0); // Affiche le bouton si on dépasse la section
+        }
+    };
+
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' }); // Remonte en haut de la page
+    };
+
     useEffect(() => {
         document.title = "Explo-Math | Explorez les propriétés des nombres";
+
+        // Ajout de l'écouteur de défilement
+        window.addEventListener('scroll', handleScroll);
+
+        // Nettoyage de l'écouteur lors du démontage
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
     }, []);
 
     return (
@@ -119,7 +140,6 @@ function Accueil() {
             {/* Testimonial Section */}
             {/* <TestimonialCarousel/> */}
 
-
             {/* Final CTA Section */}
             <section className="final-cta">
                 <h2 className="final-cta-title">Prêt à explorer les nombres ?</h2>
@@ -133,6 +153,16 @@ function Accueil() {
                     Commencer maintenant
                 </button>
             </section>
+
+            {/* Bouton flottant pour remonter en haut */}
+            {showScrollToTop && (
+                <button
+                    className={`scroll-to-top ${showScrollToTop ? 'show' : ''}`}
+                    onClick={scrollToTop}
+                >
+                    <FaChevronUp size={20} />
+                </button>
+            )}
         </div>
     );
 }

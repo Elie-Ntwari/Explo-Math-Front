@@ -21,12 +21,6 @@ function MyNavBar() {
         )}
         <img src={logo} alt="Logo" onClick={() => navigate('/')} style={{ cursor: 'pointer' ,color:'#333'}} />
       </div>
-
-      {location.pathname === '/' && (
-        <div className="myButton">
-          <button onClick={() => navigate('/AnalyseNum')}>Commencer</button>
-        </div>
-      )}
     </div>
   );
 }
