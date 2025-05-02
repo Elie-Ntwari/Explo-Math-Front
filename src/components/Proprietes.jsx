@@ -52,7 +52,7 @@ function Proprietes() {
           <button className="show-more-btn" onClick={() => handleShowMore(1)}>
             {showMore[1] ? <FaArrowUp /> : <FaArrowDown />} {showMore[1] ? 'Voir moins' : 'Voir plus'}
           </button>
-          <span className='left-container-arrow'></span>
+          <span className='right-container-arrow'></span>
         </div>
       </div>
 
