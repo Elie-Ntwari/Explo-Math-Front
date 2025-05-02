@@ -7,7 +7,7 @@ function CustomKeyboard({ onInput, onClose, onDelete, onClear }) {
     };
 
     return (
-        <div className="custom-keyboard">
+        <div className="custom-keyboard"     style={{ marginLeft: "-13px",marginTop:"20px" }}>
             <div className="keyboard-row">
                 <button onClick={() => handleButtonClick("sin(")}>sin</button>
                 <button onClick={() => handleButtonClick("cos(")}>cos</button>

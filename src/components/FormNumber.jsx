@@ -100,12 +100,6 @@ function FormNumber() {
 
     window.calculateLogBase = (base, value) => {
         if (base <= 0 || value <= 0) {
-
-            enqueueSnackbar("La base et la valeur doivent être positives.", {
-                variant: "error",
-                anchorOrigin: { vertical: "top", horizontal: "center" },
-            });
-
             throw new Error("La base et la valeur doivent être positives.");
         }
         return Math.log(value) / Math.log(base);
@@ -113,12 +107,6 @@ function FormNumber() {
 
     window.calculateLn = (value) => {
         if (value <= 0) {
-
-            enqueueSnackbar("La valeur doit être positive pour calculer le logarithme naturel.", {
-                variant: "error",
-                anchorOrigin: { vertical: "top", horizontal: "center" },
-            });
-
             throw new Error("La valeur doit être positive pour calculer le logarithme naturel.");
         }
         return Math.log(value); // Utilise Math.log pour le logarithme naturel
@@ -127,7 +115,7 @@ function FormNumber() {
     return (
         <>
             {!showLoading ? (
-                <div className="container-parent" style={{ marginTop: showKeyboard ? "190px" : "0px" }}>
+                <div className="container-parent"  style={{ marginTop: showKeyboard ? "190px" : "0px" }}>
                     <div className="formContainer" >
                         <div className="presntation">
                             <h1>Explorez les secrets des nombres !</h1>
@@ -150,18 +138,7 @@ function FormNumber() {
                                 <button type="submit">
                                     Lancer l'exploration <FaArrowRight style={{ marginLeft: '8px' }} />
                                 </button>
-
-                                {/* Clavier personnalisé */}
-                                {showKeyboard && (
-                                    <CustomKeyboard
-                                        onInput={handleKeyboardInput} // Fonction pour gérer l'entrée
-                                        onDelete={handleDelete} // Fonction pour effacer le dernier caractère
-                                        onClear={handleClear} // Fonction pour tout effacer
-                                        onClose={() => setShowKeyboard(false)} // Fonction pour fermer le clavier
-                                    />
-                                )}
                             </form>
-
                         </div>
 
                         {/* Bouton flottant pour afficher le clavier */}
@@ -169,17 +146,26 @@ function FormNumber() {
                             className="floating-keyboard-button"
                             onClick={() => {
                                 setShowKeyboard(!showKeyboard); // Inverse l'état
+                                console.log("showKeyboard:", !showKeyboard); // Log pour vérifier
                             }}
                         >
                             <FaKeyboard size={20} />
                         </button>
 
-
+                        {/* Clavier personnalisé */}
+                        {showKeyboard && (
+                            <CustomKeyboard
+                                onInput={handleKeyboardInput} // Fonction pour gérer l'entrée
+                                onDelete={handleDelete} // Fonction pour effacer le dernier caractère
+                                onClear={handleClear} // Fonction pour tout effacer
+                                onClose={() => setShowKeyboard(false)} // Fonction pour fermer le clavier
+                            />
+                        )}
 
                         <div className="falling-numbers">
                             {[...Array(15)].map((_, i) => {
                                 // Liste des symboles mathématiques à inclure
-                                const symbols = ["π", "e", "cos", "sin", "tan", "√", "^", "log", "X", "/", "+", "-"];
+                                const symbols = ["π", "e", "cos", "sin", "tan", "√", "^", "log"];
                                 // Génère soit un chiffre aléatoire, soit un symbole aléatoire
                                 const randomItem =
                                     Math.random() > 0.5
@@ -213,7 +199,7 @@ function FormNumber() {
                     </div>
                 </div>
             )}
-
+            {console.log("showKeyboard:", showKeyboard)}
         </>
     );
 }
