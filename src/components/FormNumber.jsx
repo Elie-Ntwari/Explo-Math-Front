@@ -115,7 +115,7 @@ function FormNumber() {
     return (
         <>
             {!showLoading ? (
-                <div className="container-parent"  style={{ marginTop: showKeyboard ? "190px" : "0px" }}>
+                <div className="container-parent" style={{ marginTop: showKeyboard ? "190px" : "0px" }}>
                     <div className="formContainer" >
                         <div className="presntation">
                             <h1>Explorez les secrets des nombres !</h1>
@@ -142,15 +142,20 @@ function FormNumber() {
                         </div>
 
                         {/* Bouton flottant pour afficher le clavier */}
-                        <button
-                            className="floating-keyboard-button"
-                            onClick={() => {
-                                setShowKeyboard(!showKeyboard); // Inverse l'état
-                                console.log("showKeyboard:", !showKeyboard); // Log pour vérifier
-                            }}
-                        >
-                            <FaKeyboard size={20} />
-                        </button>
+                        {
+                            !showKeyboard && (
+                                <button
+                                    className="floating-keyboard-button"
+                                    onClick={() => {
+                                        setShowKeyboard(!showKeyboard); // Inverse l'état
+                                        console.log("showKeyboard:", !showKeyboard); // Log pour vérifier
+                                    }}
+                                >
+                                    <FaKeyboard size={20} />
+                                </button>
+                            )
+                        }
+
 
                         {/* Clavier personnalisé */}
                         {showKeyboard && (
