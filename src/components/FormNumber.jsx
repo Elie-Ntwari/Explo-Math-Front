@@ -4,6 +4,7 @@ import { TbMathFunction } from 'react-icons/tb';
 import { useNavigate } from 'react-router-dom';
 import '../styles/FormNumber.css';
 import { enqueueSnackbar } from 'notistack';
+import axios from 'axios';
 import CustomKeyboard from './CustomKeyboard'; // Import du clavier personnalisé
 // Assurez-vous d'installer mathjs : npm install mathjs
 
@@ -14,34 +15,32 @@ function FormNumber() {
     const [nombre, setNombre] = useState("");
     const inputRef = useRef(null);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        const numericValue = evaluateExpression(nombre); // Convertit l'expression en valeur numérique
-        console.log("Valeur numérique :", numericValue);
-
-        if (isNaN(numericValue)) {
-            enqueueSnackbar("Expression invalide. Veuillez vérifier votre saisie.", {
-                variant: "error",
-                anchorOrigin: { vertical: "top", horizontal: "center" },
-            });
-            return;
-        }
-
         setShowLoading(true);
-        setTimeout(() => {
-            // Simule une condition pour la navigation
-            if (numericValue > 15) {
-                navigate('/caracteristiques');
+
+        try {
+            const response = await axios.get(`http://explorateur-mathematique.onrender.com/api/proprietes-mathematiques/?nombre=${nombre}`);
+
+            if (response.data.statut) {
+                // Stockez les données dans un état global ou passez-les via la navigation
+                navigate('/caracteristiques', { state: { proprietes: response.data.proprietes, nombre } });
             } else {
-                setShowLoading(false);
-                enqueueSnackbar("La valeur doit être supérieure à 15.", {
+                enqueueSnackbar("Le nombre doit être valide (1 à 1 000 000)", {
                     variant: "error",
                     anchorOrigin: { vertical: "top", horizontal: "center" },
                 });
             }
-        }, 2000);
+        } catch (error) {
+            console.error("Erreur API:", error);
+            enqueueSnackbar(error.response?.data?.message || "Erreur lors de la requête API", {
+                variant: "error",
+                anchorOrigin: { vertical: "top", horizontal: "center" },
+            });
+        } finally {
+            setShowLoading(false);
+        }
     };
-
     const handleKeyboardInput = (value) => {
         if (inputRef.current) {
             const input = inputRef.current;

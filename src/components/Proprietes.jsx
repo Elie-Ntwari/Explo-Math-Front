@@ -1,111 +1,53 @@
 import React, { useState } from 'react';
 import '../styles/Proprietes.css';
 import myLo from '../assets/undraw_reading-time_gcvc.svg';
-import { FaArrowDown, FaArrowUp } from 'react-icons/fa'; // Icônes React
+import { FaArrowDown, FaArrowUp } from 'react-icons/fa';
+import { useLocation } from 'react-router-dom';
 
 function Proprietes() {
-  // Utilisation d'un objet pour gérer l'état de chaque container
-  const [showMore, setShowMore] = useState({
-    0: false,
-    1: false,
-    2: false,
-    3: false,
-    4: false
-  });
+  const location = useLocation();
+  const { proprietes = [], nombre = 0 } = location.state || {};
+  const [expandedItems, setExpandedItems] = useState({});
 
-  const handleShowMore = (index) => {
-    setShowMore(prevState => ({
-      ...prevState,
-      [index]: !prevState[index]
+  const toggleExpand = (index) => {
+    setExpandedItems(prev => ({
+      ...prev,
+      [index]: !prev[index]
     }));
   };
 
   return (
     <div className="timeline">
-      {/* Premier élément */}
-      <div className="container left-container">
-        <img src={myLo} alt="Logo-Cara" />
-        <div className="text-box">
-          <h2>Aphabet Inc.</h2>
-          <small>2018 - 2019</small>
-          <p className={showMore[0] ? 'expanded' : ''}>
-          assumenda suscipit veritatis possimus blanditiis sed quis obcaecati voluptatum temporibus?
-            {showMore[0] && ' Extra content visible now  aspernatur repellat, nobis vel alias dolorum iste placeat!'}
-          </p>
-          <button className="show-more-btn" onClick={() => handleShowMore(0)}>
-            {showMore[0] ? <FaArrowUp /> : <FaArrowDown />} {showMore[0] ? 'Voir moins' : 'Voir plus'}
-          </button>
-          <span className='left-container-arrow'></span>
-        </div>
-      </div>
+      <div className='number'><p><strong>{nombre}</strong></p></div>
+      {proprietes.map((item, index) => {
+        const isExpanded = expandedItems[index];
+        const description = item.description || '';
+        const shouldTruncate = description.length > 100 && !isExpanded;
 
-      {/* Deuxième élément */}
-      <div className="container right-container">
-        <img src={myLo} alt="Logo-Cara" />
-        <div className="text-box">
-          <h2>Aphabet Inc.</h2>
-          <small>2018 - 2019</small>
-          <p className={showMore[1] ? 'expanded' : ''}>
-          assumenda suscipit veritatis possimus blanditiis sed quis obcaecati voluptatum temporibus?
-            {showMore[1] && ' Extra content visible now  aspernatur repellat, nobis vel alias dolorum iste placeat!'}
-          </p>
-          <button className="show-more-btn" onClick={() => handleShowMore(1)}>
-            {showMore[1] ? <FaArrowUp /> : <FaArrowDown />} {showMore[1] ? 'Voir moins' : 'Voir plus'}
-          </button>
-          <span className='right-container-arrow'></span>
-        </div>
-      </div>
-
-      {/* Troisième élément */}
-      <div className="container left-container">
-        <img src={myLo} alt="Logo-Cara" />
-        <div className="text-box">
-          <h2>Aphabet Inc.</h2>
-          <small>2018 - 2019</small>
-          <p className={showMore[2] ? 'expanded' : ''}>
-          assumenda suscipit veritatis possimus blanditiis sed quis obcaecati voluptatum temporibus?
-            {showMore[2] && ' Extra content visible now  aspernatur repellat, nobis vel alias dolorum iste placeat!'}
-          </p>
-          <button className="show-more-btn" onClick={() => handleShowMore(2)}>
-            {showMore[2] ? <FaArrowUp /> : <FaArrowDown />} {showMore[2] ? 'Voir moins' : 'Voir plus'}
-          </button>
-          <span className='left-container-arrow'></span>
-        </div>
-      </div>
-
-      {/* Quatrième élément */}
-      <div className="container right-container">
-        <img src={myLo} alt="Logo-Cara" />
-        <div className="text-box">
-          <h2>Aphabet Inc.</h2>
-          <small>2018 - 2019</small>
-          <p className={showMore[3] ? 'expanded' : ''}>
-            nobis vel alias dolorum iste placeat assumenda suscipit veritatis possimus blanditiis sed quis obcaecati voluptatum temporibus?
-            {showMore[3] && ' Extra content visible now!  Lorem ipsum dolor sit amet consectetur adipisicing el'}
-          </p>
-          <button className="show-more-btn" onClick={() => handleShowMore(3)}>
-            {showMore[3] ? <FaArrowUp /> : <FaArrowDown />} {showMore[3] ? 'Voir moins' : 'Voir plus'}
-          </button>
-          <span className='right-container-arrow'></span>
-        </div>
-      </div>
-
-      {/* Cinquième élément */}
-      <div className="container left-container">
-        <img src={myLo} alt="Logo-Cara" />
-        <div className="text-box">
-          <h2>Aphabet Inc.</h2>
-          <small>2018 - 2019</small>
-          <p className={showMore[4] ? 'expanded' : ''}>
-             Illum laudantium et quidem, aspernatur repellat, nobis vel alias dolorum iste placeat assumenda suscipit veritatis possimus blanditiis sed quis obcaecati voluptatum temporibus?
-            {showMore[4] && ' Extra content visible now! Lorem ipsum dolor sit amet consectetur adipisicing elit.'}
-          </p>
-          <button className="show-more-btn" onClick={() => handleShowMore(4)}>
-            {showMore[4] ? <FaArrowUp /> : <FaArrowDown />} {showMore[4] ? 'Voir moins' : 'Voir plus'}
-          </button>
-          <span className='left-container-arrow'></span>
-        </div>
-      </div>
+        return (
+          <div key={item.id || index} className={`container ${index % 2 === 0 ? 'left-container' : 'right-container'}`}>
+            <img src={myLo} alt="Illustration" />
+            <div className="text-box">
+              <h2>{item.nom || 'Titre inconnu'}</h2>
+              <small>Valeur : {item.valeur?.toString() || 'N/A'}</small>
+              <p className={`description ${isExpanded ? 'expanded' : 'truncated'}`}>
+              {shouldTruncate ? `${description.substring(0, 100)}...` : description}
+              </p>
+              {description.length > 10 && (
+                <button
+                  onClick={() => toggleExpand(index)}
+                  className="show-more-btn"
+                  aria-label={isExpanded ? 'Réduire' : 'Développer'}
+                >
+                  {isExpanded ? <FaArrowUp /> : <FaArrowDown />}
+                  {isExpanded ? 'Voir moins' : 'Voir plus'}
+                </button>
+              )}
+              <span className={`${index % 2 === 0 ? 'left-container-arrow' : 'right-container-arrow'}`}></span>
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }
