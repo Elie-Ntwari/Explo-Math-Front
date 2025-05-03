@@ -20,7 +20,7 @@ function FormNumber() {
         setShowLoading(true);
 
         try {
-            const response = await axios.get(`http://explorateur-mathematique.onrender.com/api/proprietes-mathematiques/?nombre=${nombre}`);
+            const response = await axios.get(`https://explorateur-mathematique.onrender.com/api/proprietes-mathematiques/?nombre=${nombre}`);
 
             if (response.data.statut) {
                 // Stockez les données dans un état global ou passez-les via la navigation
