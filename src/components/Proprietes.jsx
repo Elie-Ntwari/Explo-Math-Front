@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/Proprietes.css';
 import myLo from '../assets/undraw_reading-time_gcvc.svg';
-import { FaArrowDown, FaArrowUp } from 'react-icons/fa';
+import { FaArrowDown, FaArrowUp, FaCheck, FaTimes } from 'react-icons/fa';
 import { useLocation } from 'react-router-dom';
 
 function Proprietes() {
@@ -29,7 +29,17 @@ function Proprietes() {
             <img src={myLo} alt="Illustration" />
             <div className="text-box">
               <h2>{item.nom || 'Titre inconnu'}</h2>
-              <small>Valeur : {item.valeur?.toString() || 'N/A'}</small>
+              {item.valeur === true ? (
+                <div className="value-indicator success">
+                  <FaCheck /> Vérifié
+                </div>
+              ) : item.valeur === false ? (
+                <div className="value-indicator error">
+                  <FaTimes /> Non vérifié
+                </div>
+              ) : (
+                <small>Valeur : {item.valeur?.toString() || 'N/A'}</small>
+              )}
               <p className={`description ${isExpanded ? 'expanded' : 'truncated'}`}>
               {shouldTruncate ? `${description.substring(0, 100)}...` : description}
               </p>
