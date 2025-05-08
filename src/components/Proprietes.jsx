@@ -8,8 +8,8 @@ function Proprietes() {
   const location = useLocation();
   const { proprietes = [], nombre = 0 } = location.state || {};
   const [expandedItems, setExpandedItems] = useState({});
-console.log(proprietes)
-  
+  console.log(proprietes)
+
   const toggleExpand = (index) => {
     setExpandedItems(prev => ({
       ...prev,
@@ -22,7 +22,7 @@ console.log(proprietes)
       <div className='number'><p><strong>{nombre}</strong></p></div>
       {proprietes && Object.entries(proprietes).map(([nom, item], index) => {
         const isExpanded = expandedItems[index];
-        const desc =  item.description +'.<br><strong>Explication</strong>'+item.explication;
+        const desc = item.description + '. ' + item.explication;
         console.log(desc)
         const description = desc || '';
         const shouldTruncate = description.length > 100 && !isExpanded;
@@ -48,7 +48,12 @@ console.log(proprietes)
               <p className={`description ${isExpanded ? 'expanded' : 'truncated'}`}>
                 {shouldTruncate ? `${description.substring(0, 100)}...` : description}
               </p>
-
+              {isExpanded && item.explication && (
+                <div className="explication">
+                  <strong>Explication :</strong>
+                  <p>{item.explication}</p>
+                </div>
+              )}
               {description.length > 10 && (
                 <button
                   onClick={() => toggleExpand(index)}
