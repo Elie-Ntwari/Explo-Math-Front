@@ -154,8 +154,8 @@ function Accueil() {
                 </button>
             </section>
                {/* Footer */}
-               <section className="final-cta">
-                <p className="final-cta-subtitle" style={{background:"#222"}}>
+               <section className="final-cta"style={{background:"#222"}}>
+                <p className="final-cta-subtitle" >
                     CopyRight 2024 | Ateine-Team-Project
                 </p>
             </section>
