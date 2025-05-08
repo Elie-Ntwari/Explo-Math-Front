@@ -24,7 +24,6 @@ function FormNumber() {
 
             if (response.data) {
                 // Stockez les données dans un état global ou passez-les via la navigation
-                console.log(response)
                 navigate('/caracteristiques', { state: { proprietes: response.data.analyse, nombre } });
             } else {
                 enqueueSnackbar("Le nombre doit être valide (1 à 1 000 000)", {

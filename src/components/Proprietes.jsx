@@ -7,6 +7,7 @@ import { useLocation } from 'react-router-dom';
 function Proprietes() {
   const location = useLocation();
   const { proprietes = [], nombre = 0 } = location.state || {};
+  console.log(proprietes)
   const [expandedItems, setExpandedItems] = useState({});
 
   const toggleExpand = (index) => {
