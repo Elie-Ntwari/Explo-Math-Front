@@ -153,6 +153,12 @@ function Accueil() {
                     Commencer l'exploration
                 </button>
             </section>
+               {/* Footer */}
+               <section className="final-cta">
+                <p className="final-cta-subtitle">
+                    Rejoignez des milliers d'utilisateurs qui découvrent les mathématiques autrement avec Explo-Math.
+                </p>
+            </section>
 
             {/* Bouton flottant pour remonter en haut */}
             {showScrollToTop && (

@@ -19,30 +19,33 @@ function Proprietes() {
   return (
     <div className="timeline">
       <div className='number'><p><strong>{nombre}</strong></p></div>
-      {proprietes.map((item, index) => {
+      {proprietes.map(([nom, item], index) => {
         const isExpanded = expandedItems[index];
         const description = item.description || '';
         const shouldTruncate = description.length > 100 && !isExpanded;
 
         return (
-          <div key={item.id || index} className={`container ${index % 2 === 0 ? 'left-container' : 'right-container'}`}>
+          <div key={nom} className={`container ${index % 2 === 0 ? 'left-container' : 'right-container'}`}>
             <img src={myLo} alt="Illustration" />
             <div className="text-box">
-              <h2>{item.nom || 'Titre inconnu'}</h2>
-              {item.valeur === true ? (
+              <h2>{nom.replace(/_/g, ' ')}</h2>
+
+              {item.appartient === true ? (
                 <div className="value-indicator success">
                   <FaCheck /> Vérifié
                 </div>
-              ) : item.valeur === false ? (
+              ) : item.appartient === false ? (
                 <div className="value-indicator error">
                   <FaTimes /> Non vérifié
                 </div>
               ) : (
-                <small>Valeur : {item.valeur?.toString() || 'N/A'}</small>
+                <small>Valeur : {item.appartient?.toString() || 'N/A'}</small>
               )}
+
               <p className={`description ${isExpanded ? 'expanded' : 'truncated'}`}>
-              {shouldTruncate ? `${description.substring(0, 100)}...` : description}
+                {shouldTruncate ? `${description.substring(0, 100)}...` : description}
               </p>
+
               {description.length > 10 && (
                 <button
                   onClick={() => toggleExpand(index)}
@@ -53,6 +56,7 @@ function Proprietes() {
                   {isExpanded ? 'Voir moins' : 'Voir plus'}
                 </button>
               )}
+
               <span className={`${index % 2 === 0 ? 'left-container-arrow' : 'right-container-arrow'}`}></span>
             </div>
           </div>
