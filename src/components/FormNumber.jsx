@@ -22,9 +22,9 @@ function FormNumber() {
         try {
             const response = await axios.get(`https://explorateur-mathematique.onrender.com/api/analyse-nombre/?nombre=${myNombre}`);
 
-            if (response.data.statut) {
+            if (response.data) {
                 // Stockez les données dans un état global ou passez-les via la navigation
-                console.log(response.data.proprietes)
+                console.log(response)
                 navigate('/caracteristiques', { state: { proprietes: response.data.analyse, nombre } });
             } else {
                 enqueueSnackbar("Le nombre doit être valide (1 à 1 000 000)", {
