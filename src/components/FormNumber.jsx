@@ -20,7 +20,7 @@ function FormNumber() {
         setShowLoading(true);
         const myNombre = evaluateExpression(nombre);
         try {
-            const response = await axios.get(`https://explorateur-mathematique.onrender.com/api/analyse-nombre/?nombre=${myNombre}`);
+            const response = await axios.get(`https://explorateur-mathematique.onrender.com/api/analyse-nombre/?nombre=${nombre}`);
 
             if (response.data) {
                 // Stockez les données dans un état global ou passez-les via la navigation
