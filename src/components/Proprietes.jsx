@@ -9,6 +9,7 @@ function Proprietes() {
   const { proprietes = [], nombre = 0 } = location.state || {};
   const [expandedItems, setExpandedItems] = useState({});
 console.log(proprietes)
+  const pro = Object.entries(proprietes); 
   const toggleExpand = (index) => {
     setExpandedItems(prev => ({
       ...prev,
@@ -19,7 +20,7 @@ console.log(proprietes)
   return (
     <div className="timeline">
       <div className='number'><p><strong>{nombre}</strong></p></div>
-      {proprietes.map(([nom, item], index) => {
+      {pro.map(([nom, item], index) => {
         const isExpanded = expandedItems[index];
         const description = item.description || '';
         const shouldTruncate = description.length > 100 && !isExpanded;
