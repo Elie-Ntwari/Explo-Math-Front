@@ -155,8 +155,8 @@ function Accueil() {
             </section>
                {/* Footer */}
                <section className="final-cta">
-                <p className="final-cta-subtitle">
-                    Rejoignez des milliers d'utilisateurs qui découvrent les mathématiques autrement avec Explo-Math.
+                <p className="final-cta-subtitle" style={{background:"#222"}}>
+                    CopyRight 2024 | Ateine-Team-Project
                 </p>
             </section>
 
