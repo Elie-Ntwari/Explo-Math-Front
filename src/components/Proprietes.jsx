@@ -22,7 +22,7 @@ console.log(proprietes)
       <div className='number'><p><strong>{nombre}</strong></p></div>
       {proprietes && Object.entries(proprietes).map(([nom, item], index) => {
         const isExpanded = expandedItems[index];
-        const description = item.description || '';
+        const description = item.description +'\n' +item.explication || '';
         const shouldTruncate = description.length > 100 && !isExpanded;
 
         return (
