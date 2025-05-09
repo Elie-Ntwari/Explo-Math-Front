@@ -78,7 +78,7 @@ function FormNumber() {
                 .replace(/π/g, `(${Math.PI})`) // Remplace π par (Math.PI)
                 .replace(/e/g, `(${Math.E})`) // Remplace e par (Math.E)
                 // Ensuite, remplace les fonctions et opérations
-                .replace(/sin\(/g, `(${Math.sin()}`) // Remplace sin par Math.sin
+                .replace(/sin\(/g, "Math.sin(") // Remplace sin par Math.sin
                 .replace(/cos\(/g, "Math.cos(") // Remplace cos par Math.cos
                 .replace(/tan\(/g, "Math.tan(") // Remplace tan par Math.tan
                 .replace(/ln\(/g, "calculateLn(") // Utilise calculateLn pour ln
