@@ -30,6 +30,7 @@ function FormNumber() {
             if (response.data) {
                 // Stockez les données dans un état global ou passez-les via la navigation
                 setProprietes(response.data.analyse);
+                console.log(proprietes)
                 setResp(true);
             } else {
                 enqueueSnackbar("Le nombre doit être valide (1 à 1 000 000)", {
