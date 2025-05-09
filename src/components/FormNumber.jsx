@@ -24,6 +24,7 @@ function FormNumber() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setShowLoading(true);
+        setResp(false);
         const myNombre = evaluateExpression(nombre);
         try {
             const response = await axios.get(`https://explorateur-mathematique.onrender.com/api/analyse-nombre/?nombre=${myNombre}`);
