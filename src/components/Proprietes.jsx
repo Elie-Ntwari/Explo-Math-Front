@@ -5,6 +5,8 @@ import { FaArrowDown, FaArrowUp, FaCheck, FaTimes } from 'react-icons/fa';
 import { useLocation } from 'react-router-dom';
 
 function Proprietes({proprietes}) {
+  const [expandedItems, setExpandedItems] = useState({});
+
   const toggleExpand = (index) => {
     setExpandedItems(prev => ({
       ...prev,
@@ -14,7 +16,6 @@ function Proprietes({proprietes}) {
 
   return (
     <div className="timeline">
-    
       {Object.entries(proprietes).map(([nom, item], index) => {
         const isExpanded = expandedItems[index];
         const desc = item.description;
