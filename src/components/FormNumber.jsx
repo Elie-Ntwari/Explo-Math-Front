@@ -6,7 +6,11 @@ import '../styles/FormNumber.css';
 import { enqueueSnackbar } from 'notistack';
 import axios from 'axios';
 import CustomKeyboard from './CustomKeyboard'; // Import du clavier personnalisé
-// Assurez-vous d'installer mathjs : npm install mathjs
+import { create, all } from 'mathjs'; // Import mathjs
+
+// ⚙️ Configuration mathjs
+const config = { number: 'number', angleUnit: 'deg' };
+const math = create(all, config);
 
 function FormNumber() {
     const [showLoading, setShowLoading] = useState(false);
@@ -41,6 +45,7 @@ function FormNumber() {
             setShowLoading(false);
         }
     };
+
     const handleKeyboardInput = (value) => {
         if (inputRef.current) {
             const input = inputRef.current;
@@ -75,40 +80,24 @@ function FormNumber() {
         try {
             // Remplace d'abord les constantes π et e par leurs valeurs numériques avec des parenthèses
             const formattedExpression = expression
-                .replace(/π/g, `(${Math.PI})`) // Remplace π par (Math.PI)
-                .replace(/e/g, `(${Math.E})`) // Remplace e par (Math.E)
-                // Ensuite, remplace les fonctions et opérations
-                .replace(/sin\(/g, "Math.sin(") // Remplace sin par Math.sin
-                .replace(/cos\(/g, "Math.cos(") // Remplace cos par Math.cos
-                .replace(/tan\(/g, "Math.tan(") // Remplace tan par Math.tan
-                .replace(/ln\(/g, "calculateLn(") // Utilise calculateLn pour ln
-                .replace(/log_b\(([^,]+);\s*([^)]+)\)/g, "calculateLogBase($1, $2)") // Utilise calculateLogBase pour log_b
-                .replace(/log\(/g, "Math.log10(") // Remplace log par Math.log10
-                .replace(/√\(/g, "Math.sqrt(") // Remplace √ par Math.sqrt
-                .replace(/([a-zA-Zπ]+|\d+)\s*\^\s*([a-zA-Zπ]+|\d+)/g, "Math.pow($1, $2)"); // Remplace a^b par Math.pow(a, b)
+                .replace(/π/g, `pi`) // Remplace π par pi
+                .replace(/e/g, `e`) // Remplace e par e
+                .replace(/sin\(/g, "sin(") // Remplace sin par sin
+                .replace(/cos\(/g, "cos(") // Remplace cos par cos
+                .replace(/tan\(/g, "tan(") // Remplace tan par tan
+                .replace(/ln\(/g, "log(") // Remplace ln par log naturel
+                .replace(/log_b\(([^,]+);\s*([^)]+)\)/g, "log($2, $1)") // Remplace log_b(a; b) par log(b, a)
+                .replace(/√\(/g, "sqrt(") // Remplace √ par sqrt
+                .replace(/([a-zA-Zπ]+|\d+)\s*\^\s*([a-zA-Zπ]+|\d+)/g, "pow($1, $2)"); // Remplace a^b par pow(a, b)
 
             console.log("Expression formatée :", formattedExpression);
 
-            // Évalue l'expression
-            return eval(formattedExpression);
+            // Utilisation de mathjs pour évaluer l'expression formatée
+            return math.evaluate(formattedExpression);
         } catch (error) {
             console.error("Erreur lors de l'évaluation de l'expression :", error);
             return "Erreur";
         }
-    };
-
-    window.calculateLogBase = (base, value) => {
-        if (base <= 0 || value <= 0) {
-            throw new Error("La base et la valeur doivent être positives.");
-        }
-        return Math.log(value) / Math.log(base);
-    };
-
-    window.calculateLn = (value) => {
-        if (value <= 0) {
-            throw new Error("La valeur doit être positive pour calculer le logarithme naturel.");
-        }
-        return Math.log(value); // Utilise Math.log pour le logarithme naturel
     };
 
     return (
@@ -141,20 +130,14 @@ function FormNumber() {
                         </div>
 
                         {/* Bouton flottant pour afficher le clavier */}
-                        {
-                            !showKeyboard && (
-                                <button
-                                    className="floating-keyboard-button"
-                                    onClick={() => {
-                                        setShowKeyboard(!showKeyboard); // Inverse l'état
-                                        console.log("showKeyboard:", !showKeyboard); // Log pour vérifier
-                                    }}
-                                >
-                                    <FaKeyboard size={20} />
-                                </button>
-                            )
-                        }
-
+                        {!showKeyboard && (
+                            <button
+                                className="floating-keyboard-button"
+                                onClick={() => setShowKeyboard(!showKeyboard)}
+                            >
+                                <FaKeyboard size={20} />
+                            </button>
+                        )}
 
                         {/* Clavier personnalisé */}
                         {showKeyboard && (
@@ -168,13 +151,11 @@ function FormNumber() {
 
                         <div className="falling-numbers">
                             {[...Array(15)].map((_, i) => {
-                                // Liste des symboles mathématiques à inclure
                                 const symbols = ["π", "e", "cos", "sin", "tan", "√", "^", "log"];
-                                // Génère soit un chiffre aléatoire, soit un symbole aléatoire
                                 const randomItem =
                                     Math.random() > 0.5
-                                        ? Math.floor(Math.random() * 100) // Génère un chiffre
-                                        : symbols[Math.floor(Math.random() * symbols.length)]; // Sélectionne un symbole
+                                        ? Math.floor(Math.random() * 100)
+                                        : symbols[Math.floor(Math.random() * symbols.length)];
 
                                 return (
                                     <span
@@ -203,7 +184,6 @@ function FormNumber() {
                     </div>
                 </div>
             )}
-            {console.log("showKeyboard:", showKeyboard)}
         </>
     );
 }
