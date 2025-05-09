@@ -71,40 +71,31 @@ function FormNumber() {
         setNombre(""); // Vide complètement le champ
     };
 
-  
+    const evaluateExpression = (expression) => {
+        try {
+            // Remplace d'abord les constantes π et e par leurs valeurs numériques avec des parenthèses
+            const formattedExpression = expression
+                .replace(/π/g, `(${Math.PI})`) // Remplace π par (Math.PI)
+                .replace(/e/g, `(${Math.E})`) // Remplace e par (Math.E)
+                // Ensuite, remplace les fonctions et opérations
+                .replace(/sin\(/g, `(${Math.sin()}`) // Remplace sin par Math.sin
+                .replace(/cos\(/g, "Math.cos(") // Remplace cos par Math.cos
+                .replace(/tan\(/g, "Math.tan(") // Remplace tan par Math.tan
+                .replace(/ln\(/g, "calculateLn(") // Utilise calculateLn pour ln
+                .replace(/log_b\(([^,]+);\s*([^)]+)\)/g, "calculateLogBase($1, $2)") // Utilise calculateLogBase pour log_b
+                .replace(/log\(/g, "Math.log10(") // Remplace log par Math.log10
+                .replace(/√\(/g, "Math.sqrt(") // Remplace √ par Math.sqrt
+                .replace(/([a-zA-Zπ]+|\d+)\s*\^\s*([a-zA-Zπ]+|\d+)/g, "Math.pow($1, $2)"); // Remplace a^b par Math.pow(a, b)
 
-// Fonction principale
-const evaluateExpression = (expression) => {
-  try {
-    let formattedExpression = expression
-      // Remplace π et e avec des parenthèses pour éviter les erreurs d'opération
-      .replace(/π/g, `(${Math.PI})`)
-      .replace(/\be\b/g, `(${Math.E})`)
+            console.log("Expression formatée :", formattedExpression);
 
-      // Fonctions mathématiques
-      .replace(/sin\(/g, "Math.sin(")
-      .replace(/cos\(/g, "Math.cos(")
-      .replace(/tan\(/g, "Math.tan(")
-      .replace(/ln\(/g, "calculateLn(")
-      .replace(/log_b\(([^,;]+)[,;]\s*([^)]+)\)/g, "calculateLogBase($1, $2)")
-      .replace(/log\(/g, "Math.log10(")
-      .replace(/√\(/g, "Math.sqrt(")
-
-      // Puissance : a ^ b → Math.pow(a, b)
-      .replace(/([a-zA-Zπ]+|\d+)\s*\^\s*([a-zA-Zπ]+|\d+)/g, "Math.pow($1, $2)");
-
-    console.log("Expression formatée :", formattedExpression);
-
-    // Utiliser Function plutôt qu'eval pour plus de sécurité
-    const result = Function(`"use strict"; return (${formattedExpression})`)();
-
-    return Number.isFinite(result) ? result : "Erreur";
-  } catch (error) {
-    console.error("Erreur lors de l'évaluation de l'expression :", error);
-    return "Erreur";
-  }
-};
-
+            // Évalue l'expression
+            return eval(formattedExpression);
+        } catch (error) {
+            console.error("Erreur lors de l'évaluation de l'expression :", error);
+            return "Erreur";
+        }
+    };
 
     window.calculateLogBase = (base, value) => {
         if (base <= 0 || value <= 0) {
