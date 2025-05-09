@@ -237,8 +237,7 @@
   @media screen and (max-width:911px) {
     .timeline{
         width: 500px;
-        margin: 50px auto;
-        margin-top:100px;
+        margin: 0px auto;
     }
     .timeline::after{
         left: 31px;

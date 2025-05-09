@@ -14,7 +14,6 @@
     background: #F8F9FA;
 }
 .formContainer {
-    position: absolute; /* Nécessaire pour positionner le clavier */
     max-width: 600px;
     padding: 30px 20px;
     background: #fafafa;
