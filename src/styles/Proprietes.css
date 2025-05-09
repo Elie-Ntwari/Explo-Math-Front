@@ -1,7 +1,7 @@
 .timeline {
     position: relative;
     max-width: 800px;
-    margin: 100px auto 100px auto;
+    margin: 1px auto 100px auto;
   }
   .timeline .number {
     background: #242424;

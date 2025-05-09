@@ -4,12 +4,7 @@ import myLo from '../assets/undraw_reading-time_gcvc.svg';
 import { FaArrowDown, FaArrowUp, FaCheck, FaTimes } from 'react-icons/fa';
 import { useLocation } from 'react-router-dom';
 
-function Proprietes() {
-  const location = useLocation();
-  const { proprietes = [], nombre = 0 } = location.state || {};
-  const [expandedItems, setExpandedItems] = useState({});
-  console.log(proprietes)
-
+function Proprietes({proprietes}) {
   const toggleExpand = (index) => {
     setExpandedItems(prev => ({
       ...prev,
@@ -19,8 +14,8 @@ function Proprietes() {
 
   return (
     <div className="timeline">
-      <div className='number'><p><strong>{nombre}</strong></p></div>
-      {proprietes && Object.entries(proprietes).map(([nom, item], index) => {
+    
+      {Object.entries(proprietes).map(([nom, item], index) => {
         const isExpanded = expandedItems[index];
         const desc = item.description;
         console.log(desc)

@@ -7,6 +7,7 @@ import { enqueueSnackbar } from 'notistack';
 import axios from 'axios';
 import CustomKeyboard from './CustomKeyboard'; // Import du clavier personnalisé
 import { create, all } from 'mathjs'; // Import mathjs
+import Proprietes from './Proprietes';
 
 // ⚙️ Configuration mathjs
 const config = { number: 'number', angleUnit: 'deg' };
@@ -17,18 +18,19 @@ function FormNumber() {
     const [showKeyboard, setShowKeyboard] = useState(false); // État pour afficher/masquer le clavier
     const navigate = useNavigate();
     const [nombre, setNombre] = useState("");
+    const [proprietes, setProprietes] = useState([])
     const inputRef = useRef(null);
-
+    const [resp, setResp] = useState(false);
     const handleSubmit = async (e) => {
         e.preventDefault();
         setShowLoading(true);
         const myNombre = evaluateExpression(nombre);
         try {
             const response = await axios.get(`https://explorateur-mathematique.onrender.com/api/analyse-nombre/?nombre=${myNombre}`);
-
             if (response.data) {
                 // Stockez les données dans un état global ou passez-les via la navigation
-                navigate('/caracteristiques', { state: { proprietes: response.data.analyse, nombre } });
+                setProprietes(response.data.analyse);
+                setResp(true);
             } else {
                 enqueueSnackbar("Le nombre doit être valide (1 à 1 000 000)", {
                     variant: "error",
@@ -102,88 +104,87 @@ function FormNumber() {
 
     return (
         <>
-            {!showLoading ? (
-                <div className="container-parent" style={{ marginTop: showKeyboard ? "190px" : "0px" }}>
-                    <div className="formContainer" >
-                        <div className="presntation">
-                            <h1>Explorez les secrets des nombres !</h1>
-                            <p>
-                                Entrez un nombre et découvrez ses propriétés mathématiques fascinantes :
-                                est-il premier, pair, puissant, magique ? C'est parti pour l'exploration !
-                            </p>
-                        </div>
 
-                        <div className="myForm">
-                            <form onSubmit={handleSubmit}>
-                                <input
-                                    ref={inputRef}
-                                    type="text"
-                                    placeholder="Ex : 42"
-                                    required
-                                    value={nombre}
-                                    onChange={(e) => setNombre(e.target.value.replace(/,/g, "."))}
-                                />
-                                <button type="submit">
-                                    Lancer l'exploration <FaArrowRight style={{ marginLeft: '8px' }} />
-                                </button>
-                            </form>
-                        </div>
+            <div className="container-parent" style={{ marginTop: showKeyboard ? "190px" : "0px" }}>
+                <div className="formContainer" >
+                    <div className="presntation">
+                        <h1>Explorez les secrets des nombres !</h1>
+                        <p>
+                            Entrez un nombre et découvrez ses propriétés mathématiques fascinantes :
+                            est-il premier, pair, puissant, magique ? C'est parti pour l'exploration !
+                        </p>
+                    </div>
 
-                        {/* Bouton flottant pour afficher le clavier */}
-                        {!showKeyboard && (
-                            <button
-                                className="floating-keyboard-button"
-                                onClick={() => setShowKeyboard(!showKeyboard)}
-                            >
-                                <FaKeyboard size={20} />
-                            </button>
-                        )}
-
-                        {/* Clavier personnalisé */}
-                        {showKeyboard && (
-                            <CustomKeyboard
-                                onInput={handleKeyboardInput} // Fonction pour gérer l'entrée
-                                onDelete={handleDelete} // Fonction pour effacer le dernier caractère
-                                onClear={handleClear} // Fonction pour tout effacer
-                                onClose={() => setShowKeyboard(false)} // Fonction pour fermer le clavier
+                    <div className="myForm">
+                        <form onSubmit={handleSubmit}>
+                            <input
+                                ref={inputRef}
+                                type="text"
+                                placeholder="Ex : 42"
+                                required
+                                value={nombre}
+                                onChange={(e) => setNombre(e.target.value.replace(/,/g, "."))}
                             />
-                        )}
+                            <button type="submit">
+                                Lancer l'exploration <FaArrowRight style={{ marginLeft: '8px' }} />
+                            </button>
+                        </form>
+                    </div>
 
-                        <div className="falling-numbers">
-                            {[...Array(15)].map((_, i) => {
-                                const symbols = ["π", "e", "cos", "sin", "tan", "√", "^", "log"];
-                                const randomItem =
-                                    Math.random() > 0.5
-                                        ? Math.floor(Math.random() * 100)
-                                        : symbols[Math.floor(Math.random() * symbols.length)];
+                    {/* Bouton flottant pour afficher le clavier */}
+                    {!showKeyboard && (
+                        <button
+                            className="floating-keyboard-button"
+                            onClick={() => setShowKeyboard(!showKeyboard)}
+                        >
+                            <FaKeyboard size={20} />
+                        </button>
+                    )}
 
-                                return (
-                                    <span
-                                        key={i}
-                                        style={{
-                                            left: `${Math.random() * 100}%`,
-                                            animationDuration: `${3 + Math.random() * 5}s`,
-                                            animationDelay: `${Math.random() * 2}s`,
-                                        }}
-                                    >
-                                        {randomItem}
-                                    </span>
-                                );
-                            })}
-                        </div>
+                    {/* Clavier personnalisé */}
+                    {showKeyboard && (
+                        <CustomKeyboard
+                            onInput={handleKeyboardInput} // Fonction pour gérer l'entrée
+                            onDelete={handleDelete} // Fonction pour effacer le dernier caractère
+                            onClear={handleClear} // Fonction pour tout effacer
+                            onClose={() => setShowKeyboard(false)} // Fonction pour fermer le clavier
+                        />
+                    )}
+
+                    <div className="falling-numbers">
+                        {[...Array(15)].map((_, i) => {
+                            const symbols = ["π", "e", "cos", "sin", "tan", "√", "^", "log"];
+                            const randomItem =
+                                Math.random() > 0.5
+                                    ? Math.floor(Math.random() * 100)
+                                    : symbols[Math.floor(Math.random() * symbols.length)];
+
+                            return (
+                                <span
+                                    key={i}
+                                    style={{
+                                        left: `${Math.random() * 100}%`,
+                                        animationDuration: `${3 + Math.random() * 5}s`,
+                                        animationDelay: `${Math.random() * 2}s`,
+                                    }}
+                                >
+                                    {randomItem}
+                                </span>
+                            );
+                        })}
                     </div>
                 </div>
-            ) : (
-                <div className="myLoader-overlay">
-                    <div className="myLoader-box">
-                        <TbMathFunction className="loader-icon rotate pulse" />
-                        <h1 className="analyzing-text">
-                            Analyse en cours<span className="dot-animation">...</span>
-                        </h1>
-                        <p className="info-progress">Extraction des propriétés mathématiques</p>
-                    </div>
+            </div>
+            {showLoading && <div className="myLoader-overlay">
+                <div className="myLoader-box">
+                    <TbMathFunction className="loader-icon rotate pulse" />
+                    <h1 className="analyzing-text">
+                        Analyse en cours<span className="dot-animation">...</span>
+                    </h1>
+                    <p className="info-progress">Extraction des propriétés mathématiques</p>
                 </div>
-            )}
+            </div>}
+            {resp && (<Proprietes proprietes={proprietes} />)}
         </>
     );
 }
