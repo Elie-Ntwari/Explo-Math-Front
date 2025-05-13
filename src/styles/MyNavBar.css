@@ -29,7 +29,7 @@
 /* Style pour les liens de navigation */
 .navLink {
   background-color: transparent !important;
-  color: #0c3998 !important;
+  color: #2f2e41 !important;
   box-shadow: none !important;
   font-weight: 600;
   padding: 8px 16px !important;
@@ -41,29 +41,97 @@
   transform: translateY(-2px);
 }
 
-/* Bouton stylé */
-.mynavbarContainer button {
-  background-color:#2f2e41;
-  color: white;
-  font-weight:600;
-  padding: 12px 24px;
+/* Conteneur pour les liens de navigation */
+.nav-links {
+  display: flex;
+  gap: 20px;
+  margin-left: auto;
+  margin-right: 5%;
+}
+
+/* Style des liens de navigation */
+.nav-link {
+  position: relative;
+  background: none;
   border: none;
-  border-radius: 1000px;
-  font-family: 'Nunito', sans-serif;
+  color: #2f2e41;
+  font-size: 15px;
+  font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 4px 0 #090909 ;
-  transition: transform 0.1s ease-in-out;
+  text-decoration: none;
+  padding: 5px 0;
+  transition: color 0.3s ease;
 }
 
-/* Hover et active */
-.mynavbarContainer button:hover {
-  background-color: #575A89;
+.nav-link:hover {
+  color: #0c3998;
 }
 
-.mynavbarContainer button:active {
-  transform: scale(0.97);
+/* Bande défilante animée */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: #0c3998;
+  transition: width 0.3s ease;
 }
 
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Style pour le lien actif */
+.nav-link.active {
+  color: #0c3998;
+}
+
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* Bande défilante animée */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: #0c3998;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link:focus::after {
+  width: 100%;
+}
+
+/* 🔽 Responsive pour les petits écrans */
+@media screen and (max-width: 768px) {
+  .nav-links {
+    gap: 15px; /* Réduit l'espacement entre les liens */
+  }
+
+  .nav-link {
+    font-size: 12px; /* Réduit la taille de la police */
+    padding: 3px 0; /* Réduit le padding */
+  }
+}
+
+/* 🔽 Encore plus petit (téléphones) */
+@media screen and (max-width: 480px) {
+  .nav-links {
+    gap: 10px; /* Réduit encore plus l'espacement */
+  }
+
+  .nav-link {
+    font-size: 11px; /* Réduit encore plus la taille de la police */
+    padding: 2px 0; /* Réduit encore plus le padding */
+  }
+}
 
 /* 🔽 Encore plus petit (téléphones) */
 @media screen and (max-width: 351px) {

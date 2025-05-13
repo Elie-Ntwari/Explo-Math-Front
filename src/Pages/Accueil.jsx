@@ -76,62 +76,62 @@ function Accueil() {
             </section>
 
             {/* Features Section */}
-            <section className="features-section">
-                <h2 className="section-title">Pourquoi explorer les nombres avec Explo-Math ?</h2>
+            <section id="features-section" className="features-section">
+                <h2 className="section-title">Pourquoi utiliser Explo-Math ?</h2>
                 <div className="features-grid">
                     <div className="feature-card">
                         <div className="feature-icon">
                             <FaCalculator size={40} />
                         </div>
-                        <h3 className="feature-title">Propriétés des nombres</h3>
+                        <h3 className="feature-title">Classification des nombres</h3>
                         <p className="feature-description">
-                            Découvrez les propriétés uniques des nombres : divisibilité, primalité, et bien plus.
+                            Découvrez à quel ensemble appartient un nombre : entiers, rationnels, réels, ou autres.
                         </p>
                     </div>
                     <div className="feature-card">
                         <div className="feature-icon">
                             <FaShapes size={40} />
                         </div>
-                        <h3 className="feature-title">Représentations géométriques</h3>
+                        <h3 className="feature-title">Explications détaillées</h3>
                         <p className="feature-description">
-                            Visualisez les nombres sous forme de figures géométriques et comprenez leurs applications.
+                            Comprenez pourquoi un nombre appartient à un ensemble spécifique grâce à des explications claires.
                         </p>
                     </div>
                     <div className="feature-card">
                         <div className="feature-icon">
                             <FaChartBar size={40} />
                         </div>
-                        <h3 className="feature-title">Applications pratiques</h3>
+                        <h3 className="feature-title">Applications éducatives</h3>
                         <p className="feature-description">
-                            Explorez comment les nombres sont utilisés dans divers domaines comme la cryptographie et la physique.
+                            Apprenez les bases des ensembles mathématiques et leur importance dans différents contextes.
                         </p>
                     </div>
                 </div>
             </section>
 
             {/* How It Works Section */}
-            <section className="how-it-works">
+            <section id="how-it-works" className="how-it-works">
                 <h2 className="section-title">Comment ça marche ?</h2>
                 <div className="steps-container">
                     <div className="step">
                         <div className="step-number">1</div>
                         <h3 className="step-title">Entrez un nombre</h3>
                         <p className="step-description">
-                            Saisissez un nombre entier ou décimal pour commencer votre exploration.
+                            Saisissez un nombre entier ou décimal pour commencer l'analyse.
                         </p>
                     </div>
                     <div className="step">
                         <div className="step-number">2</div>
-                        <h3 className="step-title">Découvrez ses propriétés</h3>
+                        <h3 className="step-title">Analyse de l'ensemble</h3>
                         <p className="step-description">
-                            Apprenez-en davantage sur ses propriétés mathématiques, ses applications et ses représentations.
+                            Découvrez à quel ensemble mathématique appartient votre nombre.
                         </p>
                     </div>
                     <div className="step">
                         <div className="step-number">3</div>
-                        <h3 className="step-title">Explorez en profondeur</h3>
+                        <h3 className="step-title">Comprenez pourquoi</h3>
                         <p className="step-description">
-                            Plongez dans des domaines spécifiques comme la théorie des nombres, la géométrie ou l'algèbre.
+                            Recevez une explication détaillée sur les propriétés de votre nombre et son appartenance.
                         </p>
                     </div>
                 </div>
@@ -141,7 +141,7 @@ function Accueil() {
             {/* <TestimonialCarousel/> */}
 
             {/* Final CTA Section */}
-            <section className="final-cta">
+            <section id="final-cta" className="final-cta">
                 <h2 className="final-cta-title">Prêt à explorer les nombres ?</h2>
                 <p className="final-cta-subtitle">
                     Rejoignez des milliers d'utilisateurs qui découvrent les mathématiques autrement avec Explo-Math.
