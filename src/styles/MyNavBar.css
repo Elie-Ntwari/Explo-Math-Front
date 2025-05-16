@@ -47,6 +47,22 @@
   gap: 20px;
   margin-left: auto;
   margin-right: 5%;
+  transition: transform 0.3s ease;
+}
+
+.nav-links.open {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 80px;
+  right: 10px; /* Pousse le menu un peu plus vers la droite */
+  background: #ffffff; /* Couleur de fond blanche */
+  padding: 15px; /* Ajoute un peu plus de padding */
+  border: 1px solid #ddd; /* Bordure légère */
+  border-radius: 8px; /* Coins arrondis */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Ombre plus douce */
+  z-index: 1000;
+  animation: dropdownFadeIn 0.3s ease;
 }
 
 /* Style des liens de navigation */
@@ -55,16 +71,18 @@
   background: none;
   border: none;
   color: #2f2e41;
-  font-size: 15px;
+  font-size: 14px; /* Taille de police légèrement augmentée */
   font-weight: 700;
   cursor: pointer;
   text-decoration: none;
-  padding: 5px 0;
-  transition: color 0.3s ease;
+  padding: 10px 15px; /* Augmente le padding pour plus de confort */
+  text-align: left; /* Alignement du texte à gauche */
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .nav-link:hover {
-  color: #0c3998;
+  background: rgba(12, 57, 152, 0.1); /* Fond léger au survol */
+  color: #0c3998; /* Couleur du texte au survol */
 }
 
 /* Bande défilante animée */
@@ -109,6 +127,16 @@
   width: 100%;
 }
 
+/* Bouton menu escalier */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #2f2e41;
+}
+
 /* 🔽 Responsive pour les petits écrans */
 @media screen and (max-width: 768px) {
   .nav-links {
@@ -116,8 +144,33 @@
   }
 
   .nav-link {
-    font-size: 12px; /* Réduit la taille de la police */
+    font-size: 21px; /* Réduit la taille de la police */
     padding: 3px 0; /* Réduit le padding */
+  }
+
+  .menu-toggle {
+    display: block; /* Affiche le bouton hamburger */
+  }
+
+  .nav-links {
+    display: none; /* Masque les liens par défaut */
+  }
+
+  .nav-links.open {
+    display: flex; /* Affiche les liens lorsque le menu est ouvert */
+    flex-direction: column;
+    position: absolute;
+    top: 80px;
+    background: #ffffff; /* Couleur de fond blanche */
+    padding: 15px; /* Ajoute un peu plus de padding */
+    border: 1px solid #ddd; /* Bordure légère */
+    border-radius: 8px; /* Coins arrondis */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Ombre plus douce */
+    z-index: 1000;
+    animation: dropdownFadeIn 0.3s ease;
+  }
+  .myLogo{
+    width: 100px; /* Réduit la taille du logo */
   }
 }
 
@@ -128,8 +181,12 @@
   }
 
   .nav-link {
-    font-size: 11px; /* Réduit encore plus la taille de la police */
+    font-size: 17px; /* Réduit encore plus la taille de la police */
     padding: 2px 0; /* Réduit encore plus le padding */
+  }
+
+  .myLogo{
+    width: 50px; /* Réduit la taille du logo */
   }
 }
 
@@ -141,5 +198,20 @@
 
   .mynavbarContainer button {
     padding: 11px 22px;
+  }
+
+  .myLogo{
+    width: 30px; /* Réduit la taille du logo */
+  }
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
