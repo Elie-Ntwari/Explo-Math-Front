@@ -1,8 +1,6 @@
 import { FaArrowRight, FaKeyboard } from 'react-icons/fa';
 import { useState, useRef } from 'react';
 import { TbMathFunction } from 'react-icons/tb';
-import { useNavigate } from 'react-router-dom';
-import '../styles/FormNumber.css';
 import { enqueueSnackbar } from 'notistack';
 import axios from 'axios';
 import CustomKeyboard from './CustomKeyboard'; // Import du clavier personnalisé
@@ -16,7 +14,6 @@ const math = create(all, config);
 function FormNumber() {
     const [showLoading, setShowLoading] = useState(false);
     const [showKeyboard, setShowKeyboard] = useState(false); // État pour afficher/masquer le clavier
-    const navigate = useNavigate();
     const [nombre, setNombre] = useState("");
     const [proprietes, setProprietes] = useState([])
     const inputRef = useRef(null);
@@ -89,10 +86,11 @@ function FormNumber() {
                 .replace(/sin\(/g, "sin(") // Remplace sin par sin
                 .replace(/cos\(/g, "cos(") // Remplace cos par cos
                 .replace(/tan\(/g, "tan(") // Remplace tan par tan
-                .replace(/ln\(/g, "log(") // Remplace ln par log naturel
-                .replace(/log_b\(([^,]+);\s*([^)]+)\)/g, "log($2, $1)") // Remplace log_b(a; b) par log(b, a)
+                .replace(/log\(/g, "log(") // 
+                .replace(/ln\(/g, "ln(") // Remplace ln par log naturel
+                // .replace(/log_b\(([^,]+);\s*([^)]+)\)/g, "log($2, $1)") // Remplace log_b(a; b) par log(b, a)
                 .replace(/√\(/g, "sqrt(") // Remplace √ par sqrt
-                .replace(/([a-zA-Zπ]+|\d+)\s*\^\s*([a-zA-Zπ]+|\d+)/g, "pow($1, $2)"); // Remplace a^b par pow(a, b)
+                // .replace(/([a-zA-Zπ]+|\d+)\s*\^\s*([a-zA-Zπ]+|\d+)/g, "pow($1, $2)"); // Remplace a^b par pow(a, b)
 
             console.log("Expression formatée :", formattedExpression);
 
@@ -186,9 +184,15 @@ function FormNumber() {
                     <p className="info-progress">Extraction des propriétés mathématiques</p>
                 </div>
             </div>}
-            {resp && (<Proprietes proprietes={proprietes} />)}
+            {resp && (
+                <>
+                    {setShowKeyboard(false)}
+                    <Proprietes proprietes={proprietes} />
+                </>
+            )}
         </>
     );
 }
 
 export default FormNumber;
+
