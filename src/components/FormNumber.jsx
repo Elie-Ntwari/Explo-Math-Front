@@ -1,5 +1,5 @@
 import { FaArrowRight, FaKeyboard } from 'react-icons/fa';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { TbMathFunction } from 'react-icons/tb';
 import { enqueueSnackbar } from 'notistack';
 import axios from 'axios';
@@ -18,6 +18,15 @@ function FormNumber() {
     const [proprietes, setProprietes] = useState([])
     const inputRef = useRef(null);
     const [resp, setResp] = useState(false);
+
+
+    useEffect(() => {
+        if (resp) {
+          setShowKeyboard(false);
+        }
+      }, [resp]);
+      
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setShowLoading(true);
@@ -184,12 +193,8 @@ function FormNumber() {
                     <p className="info-progress">Extraction des propriétés mathématiques</p>
                 </div>
             </div>}
-            {resp && (
-                <>
-                    {setShowKeyboard(false)}
-                    <Proprietes proprietes={proprietes} />
-                </>
-            )}
+            {resp && <Proprietes proprietes={proprietes} />}
+
         </>
     );
 }
