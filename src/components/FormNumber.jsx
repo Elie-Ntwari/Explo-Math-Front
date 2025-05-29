@@ -11,6 +11,8 @@ import Proprietes from './Proprietes';
 const config = { number: 'number', angleUnit: 'deg' };
 const math = create(all, config);
 
+
+
 function FormNumber() {
     const [showLoading, setShowLoading] = useState(false);
     const [showKeyboard, setShowKeyboard] = useState(false); // État pour afficher/masquer le clavier
@@ -20,12 +22,30 @@ function FormNumber() {
     const [resp, setResp] = useState(false);
 
 
+
+    const [randomNumbers, setRandomNumbers] = useState([]);
+
+    useEffect(() => {
+        // Générer 4 nombres aléatoires uniques entre 1 et 100
+        const generateUniqueNumbers = () => {
+            const numbers = new Set();
+            while (numbers.size < 4) {
+                numbers.add(Math.floor(Math.random() * 100) + 1);
+            }
+            return Array.from(numbers);
+        };
+
+        setRandomNumbers(generateUniqueNumbers());
+    }, []);
+
+
+
     useEffect(() => {
         if (resp) {
-          setShowKeyboard(false);
+            setShowKeyboard(false);
         }
-      }, [resp]);
-      
+    }, [resp]);
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -37,7 +57,7 @@ function FormNumber() {
             if (response.data) {
                 // Stockez les données dans un état global ou passez-les via la navigation
                 setProprietes(response.data.analyse);
-                console.log(proprietes)
+                console.log(response.data.analyse)
                 setResp(true);
             } else {
                 enqueueSnackbar("Le nombre doit être valide (1 à 1 000 000)", {
@@ -99,7 +119,7 @@ function FormNumber() {
                 .replace(/ln\(/g, "ln(") // Remplace ln par log naturel
                 // .replace(/log_b\(([^,]+);\s*([^)]+)\)/g, "log($2, $1)") // Remplace log_b(a; b) par log(b, a)
                 .replace(/√\(/g, "sqrt(") // Remplace √ par sqrt
-                // .replace(/([a-zA-Zπ]+|\d+)\s*\^\s*([a-zA-Zπ]+|\d+)/g, "pow($1, $2)"); // Remplace a^b par pow(a, b)
+            // .replace(/([a-zA-Zπ]+|\d+)\s*\^\s*([a-zA-Zπ]+|\d+)/g, "pow($1, $2)"); // Remplace a^b par pow(a, b)
 
             console.log("Expression formatée :", formattedExpression);
 
@@ -126,6 +146,14 @@ function FormNumber() {
 
                     <div className="myForm">
                         <form onSubmit={handleSubmit}>
+                            <div class="quick-numbers">
+                                {randomNumbers.map((num, index) => (
+                                    <span key={index} className="quick-number" onClick={() => setNombre(num.toString())}>
+                                        {num}
+                                    </span>
+                                ))}
+                            </div>
+
                             <input
                                 ref={inputRef}
                                 type="text"

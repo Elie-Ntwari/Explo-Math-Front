@@ -11,6 +11,7 @@
     justify-content: center;
     width: 100%;
     margin-top: 160px!important;
+    margin-bottom: 40px;
     background: #F8F9FA;
 }
 .formContainer {
@@ -386,6 +387,32 @@
 }
 
 
+
+
+/* Quickr CSS */
+.quick-numbers {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 13px 0;
+}
+
+.quick-number {
+    background-color: #2f2e41;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.quick-number:hover {
+    background-color: #575A89;
+    transform: scale(1.05);
+}
 
 
 
