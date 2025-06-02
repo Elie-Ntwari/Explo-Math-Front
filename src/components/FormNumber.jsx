@@ -55,7 +55,7 @@ function FormNumber() {
         try {
             const response = await axios.get(`https://explorateur-mathematique.onrender.com/api/analyse-nombre/?nombre=${myNombre}`);
             if (response.data) {
-                console.log(`https://explorateur-mathematique.onrender.com/api/analyse-nombre/?nombre=${myNombre}`)
+                
                 // Stockez les données dans un état global ou passez-les via la navigation
                 setProprietes(response.data.analyse);
                 console.log(response.data)
@@ -67,7 +67,9 @@ function FormNumber() {
                 });
             }
         } catch (error) {
+            console.log(`https://explorateur-mathematique.onrender.com/api/analyse-nombre/?nombre=${myNombre}`)
             console.error("Erreur API:", error);
+
             enqueueSnackbar(error.response?.data?.message || "Erreur lors de la requête API", {
                 variant: "error",
                 anchorOrigin: { vertical: "top", horizontal: "center" },
