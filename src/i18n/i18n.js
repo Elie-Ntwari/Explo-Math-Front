@@ -13,14 +13,15 @@ i18n
       en: { translation: en },
       fr: { translation: fr },
     },
-    fallbackLng: "en", // Langue par défaut
+    lng: "en", // ✅ langue initiale forcée à anglais
+    fallbackLng: "en", // ✅ si une langue n'est pas trouvée
     interpolation: {
       escapeValue: false, // Pas besoin dans React
     },
     detection: {
       order: ["localStorage", "navigator"],
-      caches: ["localStorage"]
-    }
+      caches: ["localStorage"],
+    },
   });
 
 export default i18n;

@@ -6,6 +6,7 @@ import axios from 'axios';
 import CustomKeyboard from './CustomKeyboard'; // Import du clavier personnalisé
 import { create, all } from 'mathjs'; // Import mathjs
 import Proprietes from './Proprietes';
+import { useI18n } from '../contexts/I18nContext';
 
 // ⚙️ Configuration mathjs
 const config = { number: 'number', angleUnit: 'deg' };
@@ -20,7 +21,8 @@ function FormNumber() {
     const [proprietes, setProprietes] = useState([])
     const inputRef = useRef(null);
     const [resp, setResp] = useState(false);
-
+    
+    const { t } = useI18n();
 
 
     const [randomNumbers, setRandomNumbers] = useState([]);
@@ -61,7 +63,7 @@ function FormNumber() {
                 console.log(response.data)
                 setResp(true);
             } else {
-                enqueueSnackbar("Le nombre doit être valide (1 à 1 000 000)", {
+                enqueueSnackbar(t("analysnum.invalide"), {
                     variant: "error",
                     anchorOrigin: { vertical: "top", horizontal: "center" },
                 });
@@ -70,7 +72,7 @@ function FormNumber() {
             console.log(`https://explorateur-mathematique.onrender.com/api/analyse-nombre/?nombre=${myNombre}`)
             console.error("Erreur API:", error);
 
-            enqueueSnackbar(error.response?.data?.message || "Erreur lors de la requête API", {
+            enqueueSnackbar(error.response?.data?.message || t("analysnum.erreur_api"), {
                 variant: "error",
                 anchorOrigin: { vertical: "top", horizontal: "center" },
             });
@@ -140,11 +142,8 @@ function FormNumber() {
             <div className="container-parent" style={{ marginTop: showKeyboard ? "190px" : "0px" }}>
                 <div className="formContainer" >
                     <div className="presntation">
-                        <h1>Explorez les secrets des nombres !</h1>
-                        <p>
-                            Entrez un nombre et découvrez ses propriétés mathématiques fascinantes :
-                            est-il premier, pair, puissant, magique ? C'est parti pour l'exploration !
-                        </p>
+                       <h1>{t("analysnum.titre")}</h1>
+                        <p>{t("analysnum.sous_titre")}</p>
                     </div>
 
                     <div className="myForm">
@@ -160,13 +159,13 @@ function FormNumber() {
                             <input
                                 ref={inputRef}
                                 type="text"
-                                placeholder="Ex : 42"
+                                placeholder={t("analysnum.placeholder")}
                                 required
                                 value={nombre}
                                 onChange={(e) => setNombre(e.target.value.replace(/,/g, "."))}
                             />
                             <button type="submit">
-                                Lancer l'exploration <FaArrowRight style={{ marginLeft: '8px' }} />
+                                 {t("analysnum.bouton")} <FaArrowRight style={{ marginLeft: '8px' }} />
                             </button>
                         </form>
                     </div>
@@ -219,9 +218,9 @@ function FormNumber() {
                 <div className="myLoader-box">
                     <TbMathFunction className="loader-icon rotate pulse" />
                     <h1 className="analyzing-text">
-                        Analyse en cours<span className="dot-animation">...</span>
+                       {t("analysnum.analyse_en_cours")}<span className="dot-animation">...</span>
                     </h1>
-                    <p className="info-progress">Extraction des propriétés mathématiques</p>
+                    <p className="info-progress">{t("analysnum.extraction")}</p>
                 </div>
             </div>}
             {resp && <Proprietes proprietes={proprietes} />}
