@@ -55,6 +55,7 @@ function FormNumber() {
         try {
             const response = await axios.get(`https://explorateur-mathematique.onrender.com/api/analyse-nombre/?nombre=${myNombre}`);
             if (response.data) {
+                console.log(`https://explorateur-mathematique.onrender.com/api/analyse-nombre/?nombre=${myNombre}`)
                 // Stockez les données dans un état global ou passez-les via la navigation
                 setProprietes(response.data.analyse);
                 console.log(response.data)
