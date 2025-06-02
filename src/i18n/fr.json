@@ -1,0 +1,79 @@
+{
+
+  "navbar": {
+    "whyExplo": "Pourquoi Explo-Math ?",
+    "works": "Comment ça marche ?",
+    "start": "Prêt à commencer ?",
+    "home": "Accueil",
+    "about": "À propos",
+    "start2": "Passer à l'exploration",
+    "langEng": "Anglais",
+    "langFr": "Français "
+  },
+
+  "accueil": {
+    "title": "Explorez les <1>propriétés des nombres</1> de manière interactive",
+    "subtitle": "Entrez un nombre et découvrez ses propriétés mathématiques fascinantes : divisibilité, représentations géométriques, applications et bien plus encore.",
+    "cta_explore": "Commencer l'exploration",
+    "cta_learn_more": "En savoir plus",
+
+    "why_title": "Pourquoi utiliser Explo-Math ?",
+    "feature1_title": "Classification des nombres",
+    "feature1_desc": "Découvrez à quel ensemble appartient un nombre : entiers, rationnels, réels, ou autres.",
+    "feature2_title": "Explications détaillées",
+    "feature2_desc": "Comprenez pourquoi un nombre appartient à un ensemble spécifique grâce à des explications claires.",
+    "feature3_title": "Applications éducatives",
+    "feature3_desc": "Apprenez les bases des ensembles mathématiques et leur importance dans différents contextes.",
+
+    "how_title": "Comment ça marche ?",
+    "step1_title": "Entrez un nombre",
+    "step1_desc": "Saisissez un nombre entier ou décimal pour commencer l'analyse.",
+    "step2_title": "Analyse de l'ensemble",
+    "step2_desc": "Découvrez à quel ensemble mathématique appartient votre nombre.",
+    "step3_title": "Comprenez pourquoi",
+    "step3_desc": "Recevez une explication détaillée sur les propriétés de votre nombre et son appartenance.",
+
+    "ready_title": "Prêt à explorer les nombres ?",
+    "ready_subtitle": "Rejoignez des milliers d'utilisateurs qui découvrent les mathématiques autrement avec Explo-Math.",
+    "footer_text": "CopyRight 2025 | Ateine-Team-Project"
+  },
+
+  "analysnum": {
+    "titre": "Explorez les secrets des nombres !",
+    "sous_titre": "Entrez un nombre et découvrez ses propriétés mathématiques fascinantes : est-il premier, pair, puissant, magique ? C'est parti pour l'exploration !",
+    "placeholder": "Ex : 42",
+    "bouton": "Lancer l'exploration",
+    "analyse_en_cours": "Analyse en cours",
+    "extraction": "Extraction des propriétés mathématiques",
+    "invalide": "Le nombre doit être valide (1 à 1 000 000)",
+    "erreur_api": "Erreur lors de la requête API"
+  },
+
+  "keyboard": {
+    "effacer": "Effacer",
+    "tout_effacer": "Tout effacer",
+    "fermer": "Fermer"
+  },
+
+
+  "about": {
+    "retour": "Retour à l'accueil",
+    "titre": "À propos d'Explo-Math",
+    "description1": "Explo-Math est une application qui appartient au Centre Interuniversitaire de Recherche en Économie Mathématique (CIREM) de l'UPC.",
+    "description2": "Le CIREM traite l'économie avec la rigueur des mathématiques, affirmant ainsi son engagement en faveur d'une approche scientifique structurée.",
+    "description3": "Loin de se limiter à une analyse immédiate ou descriptive des phénomènes économiques, le CIREM entend privilégier une approche froide, essentielle à la formalisation, à la caractérisation et à la compréhension des mécanismes sous-jacents aux dynamiques économiques.",
+    "description4": "Les publications de la collection CIREM WPS ont pour vocation de diffuser des recherches innovantes en mathématiques fondamentales et appliquées, couvrant un large spectre allant de la microéconomie et la macroéconomie à l'économétrie, la statistique, la théorie des jeux et les modèles d'équilibre général.",
+    "coordonnees": {
+      "titre": "Coordonnées",
+      "adresse": "Croisement des avenues de Libération et Boulevard Triomphal, Kinshasa, RDC",
+      "departement": "Département des sciences économiques",
+      "bureau": "Bureau : CIREM",
+      "bp": "B.P. 4745 Kinshasa II",
+      "email": "Email",
+      "site": "Site web",
+      "telephone": "Téléphone",
+      "x": "X"
+    },
+    "directeur": "La série est publiée trimestriellement sous la direction du Professeur Jean-Paul Tsasa."
+  }
+}

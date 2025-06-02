@@ -5,8 +5,14 @@ import MyNavBar from "../components/MyNavBar"; // Import de la navbar
 import fondImg from '../assets/undraw_mathematics_hc2c.svg';
 import TestimonialCarousel from "../components/TestimonialCarousel";
 import { FaCalculator, FaShapes, FaChartBar, FaChevronUp } from "react-icons/fa"; // Import de l'icône pour le bouton
+import { Trans } from 'react-i18next';
+import { useI18n } from "../contexts/I18nContext";
+
+
 
 function Accueil() {
+   const {t} = useI18n();
+
     const navigate = useNavigate();
     const [showScrollToTop, setShowScrollToTop] = useState(false); // État pour le bouton flottant
 
@@ -47,24 +53,18 @@ function Accueil() {
             <section className="hero-section">
                 <div className="hero-text">
                     <h1 className="hero-title">
-                        Explorez les <span>propriétés des nombres</span> de manière interactive
-                    </h1>
-                    <p className="hero-subtitle">
-                        Entrez un nombre et découvrez ses propriétés mathématiques fascinantes : divisibilité,
-                        représentations géométriques, applications et bien plus encore.
-                    </p>
+                        <Trans i18nKey="accueil.title">
+                            Explorez les <span>propriétés des nombres</span> de manière interactive
+                        </Trans></h1>
+                    <p className="hero-subtitle">{t('accueil.subtitle')}</p>
+
                     <div className="cta-buttons">
-                        <button
-                            className="cta-button primary-button"
-                            onClick={() => handleNavigate('/AnalyseNum')}
-                        >
-                            Commencer l'exploration
+
+                        <button className="cta-button primary-button" onClick={() => handleNavigate('/AnalyseNum')}>
+                            {t('accueil.cta_explore')}
                         </button>
-                        <button
-                            className="cta-button secondary-button"
-                            onClick={() => handleNavigate('/about')}
-                        >
-                            En savoir plus
+                        <button className="cta-button secondary-button" onClick={() => handleNavigate('/about')}>
+                            {t('accueil.cta_learn_more')}
                         </button>
                     </div>
                 </div>
@@ -77,62 +77,55 @@ function Accueil() {
 
             {/* Features Section */}
             <section id="features-section" className="features-section">
-                <h2 className="section-title">Pourquoi utiliser Explo-Math ?</h2>
+                <h2 className="section-title">{t('accueil.why_title')}</h2>
                 <div className="features-grid">
                     <div className="feature-card">
                         <div className="feature-icon">
                             <FaCalculator size={40} />
                         </div>
-                        <h3 className="feature-title">Classification des nombres</h3>
-                        <p className="feature-description">
-                            Découvrez à quel ensemble appartient un nombre : entiers, rationnels, réels, ou autres.
-                        </p>
+                        <h3 className="feature-title">{t('accueil.feature1_title')}</h3>
+                        <p className="feature-description">{t('accueil.feature1_desc')}</p>
                     </div>
+
                     <div className="feature-card">
                         <div className="feature-icon">
                             <FaShapes size={40} />
                         </div>
-                        <h3 className="feature-title">Explications détaillées</h3>
-                        <p className="feature-description">
-                            Comprenez pourquoi un nombre appartient à un ensemble spécifique grâce à des explications claires.
-                        </p>
+                        <h3 className="feature-title">{t('accueil.feature2_title')}</h3>
+                        <p className="feature-description">{t('accueil.feature2_desc')}</p>
                     </div>
                     <div className="feature-card">
                         <div className="feature-icon">
                             <FaChartBar size={40} />
                         </div>
-                        <h3 className="feature-title">Applications éducatives</h3>
-                        <p className="feature-description">
-                            Apprenez les bases des ensembles mathématiques et leur importance dans différents contextes.
-                        </p>
+                        <h3 className="feature-title">{t('accueil.feature3_title')}</h3>
+                        <p className="feature-description">{t('accueil.feature3_desc')}</p>
+
                     </div>
                 </div>
             </section>
 
             {/* How It Works Section */}
             <section id="how-it-works" className="how-it-works">
-                <h2 className="section-title">Comment ça marche ?</h2>
+                <h2 className="section-title">{t('accueil.how_title')}</h2>
                 <div className="steps-container">
                     <div className="step">
                         <div className="step-number">1</div>
-                        <h3 className="step-title">Entrez un nombre</h3>
-                        <p className="step-description">
-                            Saisissez un nombre entier ou décimal pour commencer l'analyse.
-                        </p>
+
+                        <h3 className="step-title">{t('accueil.step1_title')}</h3>
+                        <p className="step-description">{t('accueil.step1_desc')}</p>
                     </div>
                     <div className="step">
                         <div className="step-number">2</div>
-                        <h3 className="step-title">Analyse de l'ensemble</h3>
-                        <p className="step-description">
-                            Découvrez à quel ensemble mathématique appartient votre nombre.
-                        </p>
+
+                        <h3 className="step-title">{t('accueil.step2_title')}</h3>
+                        <p className="step-description">{t('accueil.step2_desc')}</p>
                     </div>
                     <div className="step">
                         <div className="step-number">3</div>
-                        <h3 className="step-title">Comprenez pourquoi</h3>
-                        <p className="step-description">
-                            Recevez une explication détaillée sur les propriétés de votre nombre et son appartenance.
-                        </p>
+                        <h3 className="step-title">{t('accueil.step3_title')}</h3>
+                        <p className="step-description">{t('accueil.step3_desc')}</p>
+
                     </div>
                 </div>
             </section>
@@ -142,21 +135,18 @@ function Accueil() {
 
             {/* Final CTA Section */}
             <section id="final-cta" className="final-cta">
-                <h2 className="final-cta-title">Prêt à explorer les nombres ?</h2>
-                <p className="final-cta-subtitle">
-                    Rejoignez des milliers d'utilisateurs qui découvrent les mathématiques autrement avec Explo-Math.
-                </p>
-                <button
-                    className="cta-button cta-white-button"
-                    onClick={() => handleNavigate('/AnalyseNum')}
-                >
-                    Commencer l'exploration
+
+                <h2 className="final-cta-title">{t('accueil.ready_title')}</h2>
+                <p className="final-cta-subtitle">{t('accueil.ready_subtitle')}</p>
+                <button className="cta-button cta-white-button" onClick={() => handleNavigate('/AnalyseNum')}>
+                    {t('accueil.cta_explore')}
                 </button>
+
             </section>
-               {/* Footer */}
-               <section className="final-cta"style={{background:"#222"}}>
-                <p className="final-cta-subtitle" style={{fontSize:"20px",color:"#EEE"}} >
-                    CopyRight 2025 | Ateine-Team-Project
+            {/* Footer */}
+            <section className="final-cta" style={{ background: "#222" }}>
+                <p className="final-cta-subtitle" style={{ fontSize: "20px", color: "#EEE" }}>
+                    {t('accueil.footer_text')}
                 </p>
             </section>
 
@@ -172,5 +162,7 @@ function Accueil() {
         </div>
     );
 }
+
+
 
 export default Accueil;

@@ -2,20 +2,27 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import '../styles/MyNavBar.css';
 import logo from '../assets/logo.png';
-import { FaChevronLeft, FaBars, FaTimes } from 'react-icons/fa'; // Import des icônes
+
+import { FaBars, FaTimes } from 'react-icons/fa';
+import LanguageSwitcher from './LanguageSwitcher';
+import { useI18n } from '../contexts/I18nContext';
+
+
 
 function MyNavBar() {
+  const { i18n, t, changeMyLanguage } = useI18n();
   const navigate = useNavigate();
   const location = useLocation();
+
   const [activeSection, setActiveSection] = useState('');
-  const [menuOpen, setMenuOpen] = useState(false); // État pour le menu
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const scrollToSection = (id) => {
     const section = document.getElementById(id);
     if (section) {
       section.scrollIntoView({ behavior: 'smooth' });
     }
-    setMenuOpen(false); // Ferme le menu après un clic
+    setMenuOpen(false);
   };
 
   const handleScroll = () => {
@@ -39,7 +46,6 @@ function MyNavBar() {
     if (location.pathname === '/') {
       window.addEventListener('scroll', handleScroll);
     }
-
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
@@ -48,58 +54,58 @@ function MyNavBar() {
   return (
     <div className="mynavbarContainer">
       <div className="myLogo">
-        <img src={logo} alt="Logo" onClick={() => navigate('/')} style={{ cursor: 'pointer', color: '#333' }} />
+        <img src={logo} alt="Logo" onClick={() => navigate('/')} style={{ cursor: 'pointer' }} />
       </div>
+
+      {/* Sélecteur de langue avec images de drapeaux */}
+      <LanguageSwitcher />
 
       <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
         {menuOpen ? <FaTimes /> : <FaBars />}
       </button>
 
       <div className={`nav-links ${menuOpen ? 'open' : ''}`}>
-        {/* Ancres visibles uniquement sur la page d'accueil */}
         {location.pathname === '/' && (
           <>
             <button
               onClick={() => scrollToSection('features-section')}
               className={`nav-link ${activeSection === 'features-section' ? 'active' : ''}`}
             >
-              Pourquoi Explo-Math ?
+              {t('navbar.whyExplo')}
             </button>
             <button
               onClick={() => scrollToSection('how-it-works')}
               className={`nav-link ${activeSection === 'how-it-works' ? 'active' : ''}`}
             >
-              Comment ça marche ?
+              {t('navbar.works')}
             </button>
             <button
               onClick={() => scrollToSection('final-cta')}
               className={`nav-link ${activeSection === 'final-cta' ? 'active' : ''}`}
             >
-              Prêt à commencer ?
+              {t('navbar.start')}
             </button>
           </>
         )}
 
-        {/* Liens spécifiques à la page AnalyseNum */}
         {location.pathname === '/AnalyseNum' && (
           <>
             <button onClick={() => navigate('/')} className="nav-link">
-              Accueil
+              {t('navbar.home')}
             </button>
             <button onClick={() => navigate('/about')} className="nav-link">
-              À propos
+              {t('navbar.about')}
             </button>
           </>
         )}
 
-        {/* Liens spécifiques à la page A Propos */}
         {location.pathname === '/about' && (
           <>
             <button onClick={() => navigate('/')} className="nav-link">
-              Accueil
+              {t('navbar.home')}
             </button>
             <button onClick={() => navigate('/AnalyseNum')} className="nav-link">
-              Passer à l'exploration
+              {t('navbar.start2')}
             </button>
           </>
         )}
@@ -107,5 +113,6 @@ function MyNavBar() {
     </div>
   );
 }
+
 
 export default MyNavBar;

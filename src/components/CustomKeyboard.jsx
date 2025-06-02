@@ -1,13 +1,17 @@
 import React from "react";
 import "../styles/FormNumber.css";
+import { useI18n } from "../contexts/I18nContext";
 
 function CustomKeyboard({ onInput, onClose, onDelete, onClear }) {
+
+    const { t } = useI18n();
+
     const handleButtonClick = (value) => {
         onInput(value);
     };
 
     return (
-        <div className="custom-keyboard"     style={{ marginLeft: "-13px",marginTop:"20px" }}>
+        <div className="custom-keyboard" style={{ marginLeft: "-13px", marginTop: "20px" }}>
             <div className="keyboard-row">
                 <button onClick={() => handleButtonClick("sin()")}>sin</button>
                 <button onClick={() => handleButtonClick("cos()")}>cos</button>
@@ -53,10 +57,11 @@ function CustomKeyboard({ onInput, onClose, onDelete, onClear }) {
                 <button onClick={() => handleButtonClick("+")}>+</button>
             </div>
             <div className="keyboard-row">
-                <button onClick={onDelete} className="delete-button">Effacer</button>
-                <button onClick={onClear} className="clear-button">Tout effacer</button>
-                <button onClick={onClose} className="close-keyboard">Fermer</button>
+                <button onClick={onDelete} className="delete-button">{t("keyboard.effacer")}</button>
+                <button onClick={onClear} className="clear-button">{t("keyboard.tout_effacer")}</button>
+                <button onClick={onClose} className="close-keyboard">{t("keyboard.fermer")}</button>
             </div>
+
         </div>
     );
 }

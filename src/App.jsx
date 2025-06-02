@@ -6,11 +6,23 @@ import Login from "./Pages/Login"; // Assurez-vous que le chemin est correct
 import Signup from "./Pages/Signup";
 import About from "./Pages/About";
 import { SnackbarProvider } from "notistack";
+import { useTranslation } from "react-i18next";
+import { I18nProvider } from "./contexts/I18nContext";
 
 
 function App() {
 
+   const {t,i18n} = useTranslation();
+
+   const changeMyLanguage = (lng) =>{
+        i18n.changeLanguage(lng);
+   }
+
+
+
    return (
+
+      <I18nProvider>
       <BrowserRouter>
          {/* Etablissement des diffèrents path (Pages)*/}
 
@@ -69,6 +81,7 @@ function App() {
          </Routes>
 
       </BrowserRouter>
+      </I18nProvider>
    )
 }
 

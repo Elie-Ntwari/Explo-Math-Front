@@ -3,30 +3,25 @@ import { useState, useRef, useEffect } from 'react';
 import { TbMathFunction } from 'react-icons/tb';
 import { enqueueSnackbar } from 'notistack';
 import axios from 'axios';
-import CustomKeyboard from './CustomKeyboard'; // Import du clavier personnalisé
-import { create, all } from 'mathjs'; // Import mathjs
+import CustomKeyboard from './CustomKeyboard';
+import { create, all } from 'mathjs';
 import Proprietes from './Proprietes';
+import { useTranslation } from 'react-i18next';
 
-// ⚙️ Configuration mathjs
 const config = { number: 'number', angleUnit: 'deg' };
 const math = create(all, config);
 
-
-
 function FormNumber() {
+    const { t } = useTranslation();
     const [showLoading, setShowLoading] = useState(false);
-    const [showKeyboard, setShowKeyboard] = useState(false); // État pour afficher/masquer le clavier
+    const [showKeyboard, setShowKeyboard] = useState(false);
     const [nombre, setNombre] = useState("");
-    const [proprietes, setProprietes] = useState([])
+    const [proprietes, setProprietes] = useState([]);
     const inputRef = useRef(null);
     const [resp, setResp] = useState(false);
-
-
-
     const [randomNumbers, setRandomNumbers] = useState([]);
 
     useEffect(() => {
-        // Générer 4 nombres aléatoires uniques entre 1 et 100
         const generateUniqueNumbers = () => {
             const numbers = new Set();
             while (numbers.size < 4) {
@@ -34,18 +29,14 @@ function FormNumber() {
             }
             return Array.from(numbers);
         };
-
         setRandomNumbers(generateUniqueNumbers());
     }, []);
-
-
 
     useEffect(() => {
         if (resp) {
             setShowKeyboard(false);
         }
     }, [resp]);
-
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -55,19 +46,16 @@ function FormNumber() {
         try {
             const response = await axios.get(`https://explorateur-mathematique.onrender.com/api/analyse-nombre/?nombre=${myNombre}`);
             if (response.data) {
-                // Stockez les données dans un état global ou passez-les via la navigation
                 setProprietes(response.data.analyse);
-                console.log(response.data.analyse)
                 setResp(true);
             } else {
-                enqueueSnackbar("Le nombre doit être valide (1 à 1 000 000)", {
+                enqueueSnackbar(t("analysnum.invalide"), {
                     variant: "error",
                     anchorOrigin: { vertical: "top", horizontal: "center" },
                 });
             }
         } catch (error) {
-            console.error("Erreur API:", error);
-            enqueueSnackbar(error.response?.data?.message || "Erreur lors de la requête API", {
+            enqueueSnackbar(error.response?.data?.message || t("analysnum.erreur_api"), {
                 variant: "error",
                 anchorOrigin: { vertical: "top", horizontal: "center" },
             });
@@ -79,19 +67,11 @@ function FormNumber() {
     const handleKeyboardInput = (value) => {
         if (inputRef.current) {
             const input = inputRef.current;
-            const start = input.selectionStart; // Position de début du curseur
-            const end = input.selectionEnd; // Position de fin du curseur
-
-            // Insère la valeur à la position du curseur
-            const newValue =
-                nombre.substring(0, start) + value + nombre.substring(end);
-
-            // Remplace les virgules par des points
+            const start = input.selectionStart;
+            const end = input.selectionEnd;
+            const newValue = nombre.substring(0, start) + value + nombre.substring(end);
             const sanitizedValue = newValue.replace(/,/g, ".");
-
             setNombre(sanitizedValue);
-
-            // Met à jour la position du curseur après l'insertion
             setTimeout(() => {
                 input.selectionStart = input.selectionEnd = start + value.length;
             }, 0);
@@ -99,54 +79,42 @@ function FormNumber() {
     };
 
     const handleDelete = () => {
-        setNombre((prev) => prev.slice(0, -1)); // Supprime le dernier caractère
+        setNombre((prev) => prev.slice(0, -1));
     };
 
     const handleClear = () => {
-        setNombre(""); // Vide complètement le champ
+        setNombre("");
     };
 
     const evaluateExpression = (expression) => {
         try {
-            // Remplace d'abord les constantes π et e par leurs valeurs numériques avec des parenthèses
             const formattedExpression = expression
-                .replace(/π/g, `pi`) // Remplace π par pi
-                .replace(/e/g, `e`) // Remplace e par e
-                .replace(/sin\(/g, "sin(") // Remplace sin par sin
-                .replace(/cos\(/g, "cos(") // Remplace cos par cos
-                .replace(/tan\(/g, "tan(") // Remplace tan par tan
-                .replace(/log\(/g, "log(") // 
-                .replace(/ln\(/g, "ln(") // Remplace ln par log naturel
-                // .replace(/log_b\(([^,]+);\s*([^)]+)\)/g, "log($2, $1)") // Remplace log_b(a; b) par log(b, a)
-                .replace(/√\(/g, "sqrt(") // Remplace √ par sqrt
-            // .replace(/([a-zA-Zπ]+|\d+)\s*\^\s*([a-zA-Zπ]+|\d+)/g, "pow($1, $2)"); // Remplace a^b par pow(a, b)
-
-            console.log("Expression formatée :", formattedExpression);
-
-            // Utilisation de mathjs pour évaluer l'expression formatée
+                .replace(/π/g, `pi`)
+                .replace(/e/g, `e`)
+                .replace(/sin\(/g, "sin(")
+                .replace(/cos\(/g, "cos(")
+                .replace(/tan\(/g, "tan(")
+                .replace(/log\(/g, "log(")
+                .replace(/ln\(/g, "ln(")
+                .replace(/√\(/g, "sqrt(");
             return math.evaluate(formattedExpression);
         } catch (error) {
-            console.error("Erreur lors de l'évaluation de l'expression :", error);
             return "Erreur";
         }
     };
 
     return (
         <>
-
             <div className="container-parent" style={{ marginTop: showKeyboard ? "190px" : "0px" }}>
-                <div className="formContainer" >
+                <div className="formContainer">
                     <div className="presntation">
-                        <h1>Explorez les secrets des nombres !</h1>
-                        <p>
-                            Entrez un nombre et découvrez ses propriétés mathématiques fascinantes :
-                            est-il premier, pair, puissant, magique ? C'est parti pour l'exploration !
-                        </p>
+                        <h1>{t("analysnum.titre")}</h1>
+                        <p>{t("analysnum.sous_titre")}</p>
                     </div>
 
                     <div className="myForm">
                         <form onSubmit={handleSubmit}>
-                            <div class="quick-numbers">
+                            <div className="quick-numbers">
                                 {randomNumbers.map((num, index) => (
                                     <span key={index} className="quick-number" onClick={() => setNombre(num.toString())}>
                                         {num}
@@ -157,34 +125,29 @@ function FormNumber() {
                             <input
                                 ref={inputRef}
                                 type="text"
-                                placeholder="Ex : 42"
+                                placeholder={t("analysnum.placeholder")}
                                 required
                                 value={nombre}
                                 onChange={(e) => setNombre(e.target.value.replace(/,/g, "."))}
                             />
                             <button type="submit">
-                                Lancer l'exploration <FaArrowRight style={{ marginLeft: '8px' }} />
+                                {t("analysnum.bouton")} <FaArrowRight style={{ marginLeft: '8px' }} />
                             </button>
                         </form>
                     </div>
 
-                    {/* Bouton flottant pour afficher le clavier */}
                     {!showKeyboard && (
-                        <button
-                            className="floating-keyboard-button"
-                            onClick={() => setShowKeyboard(!showKeyboard)}
-                        >
+                        <button className="floating-keyboard-button" onClick={() => setShowKeyboard(true)}>
                             <FaKeyboard size={20} />
                         </button>
                     )}
 
-                    {/* Clavier personnalisé */}
                     {showKeyboard && (
                         <CustomKeyboard
-                            onInput={handleKeyboardInput} // Fonction pour gérer l'entrée
-                            onDelete={handleDelete} // Fonction pour effacer le dernier caractère
-                            onClear={handleClear} // Fonction pour tout effacer
-                            onClose={() => setShowKeyboard(false)} // Fonction pour fermer le clavier
+                            onInput={handleKeyboardInput}
+                            onDelete={handleDelete}
+                            onClear={handleClear}
+                            onClose={() => setShowKeyboard(false)}
                         />
                     )}
 
@@ -195,7 +158,6 @@ function FormNumber() {
                                 Math.random() > 0.5
                                     ? Math.floor(Math.random() * 100)
                                     : symbols[Math.floor(Math.random() * symbols.length)];
-
                             return (
                                 <span
                                     key={i}
@@ -212,20 +174,22 @@ function FormNumber() {
                     </div>
                 </div>
             </div>
-            {showLoading && <div className="myLoader-overlay">
-                <div className="myLoader-box">
-                    <TbMathFunction className="loader-icon rotate pulse" />
-                    <h1 className="analyzing-text">
-                        Analyse en cours<span className="dot-animation">...</span>
-                    </h1>
-                    <p className="info-progress">Extraction des propriétés mathématiques</p>
-                </div>
-            </div>}
-            {resp && <Proprietes proprietes={proprietes} />}
 
+            {showLoading && (
+                <div className="myLoader-overlay">
+                    <div className="myLoader-box">
+                        <TbMathFunction className="loader-icon rotate pulse" />
+                        <h1 className="analyzing-text">
+                            {t("analysnum.analyse_en_cours")}<span className="dot-animation">...</span>
+                        </h1>
+                        <p className="info-progress">{t("analysnum.extraction")}</p>
+                    </div>
+                </div>
+            )}
+
+            {resp && <Proprietes proprietes={proprietes} />}
         </>
     );
 }
 
 export default FormNumber;
-

@@ -1,0 +1,79 @@
+{
+    "navbar": {
+    "whyExplo": "Why Explo-Math?",
+    "works": "How does it work?",
+    "start": "Ready to start?",
+    "home": "Home",
+    "about": "About us",
+    "start2": "Start exploring",
+    "langEng": "English",
+    "langFr": "French"
+  },
+
+ "accueil": {
+    "title": "Explore the <1>properties of numbers</1> interactively",
+    "subtitle": "Enter a number and discover its fascinating mathematical properties: divisibility, geometric representations, applications, and much more.",
+    "cta_explore": "Start exploring",
+    "cta_learn_more": "Learn more",
+
+    "why_title": "Why use Explo-Math?",
+    "feature1_title": "Number classification",
+    "feature1_desc": "Find out which set a number belongs to: integers, rational numbers, real numbers, or others.",
+    "feature2_title": "Detailed explanations",
+    "feature2_desc": "Understand why a number belongs to a specific set with clear explanations.",
+    "feature3_title": "Educational applications",
+    "feature3_desc": "Learn the basics of mathematical sets and their importance in various contexts.",
+
+    "how_title": "How does it work?",
+    "step1_title": "Enter a number",
+    "step1_desc": "Enter an integer or decimal number to start the analysis.",
+    "step2_title": "Set analysis",
+    "step2_desc": "Discover which mathematical set your number belongs to.",
+    "step3_title": "Understand why",
+    "step3_desc": "Receive a detailed explanation of your number's properties and classification.",
+
+    "ready_title": "Ready to explore numbers?",
+    "ready_subtitle": "Join thousands of users discovering math differently with Explo-Math.",
+    "footer_text": "CopyRight 2025 | Ateine-Team-Project"
+  },
+
+
+  "analysnum": {
+    "titre": "Explore the secrets of numbers!",
+    "sous_titre": "Enter a number and discover its fascinating mathematical properties: is it prime, even, powerful, magical? Let's explore!",
+    "placeholder": "E.g.: 42",
+    "bouton": "Start exploring",
+    "analyse_en_cours": "Analyzing",
+    "extraction": "Extracting mathematical properties",
+    "invalide": "The number must be valid (1 to 1,000,000)",
+    "erreur_api": "Error during API request"
+  },
+
+  "keyboard": {
+    "effacer": "Delete",
+    "tout_effacer": "Clear all",
+    "fermer": "Close"
+  },
+
+
+  "about": {
+    "retour": "Back to Home",
+    "titre": "About Explo-Math",
+    "description1": "Explo-Math is an application owned by the Interuniversity Center for Research in Mathematical Economics (CIREM) of the UPC.",
+    "description2": "CIREM approaches economics with mathematical rigor, showing its commitment to a structured scientific method.",
+    "description3": "Far from limiting itself to immediate or descriptive analysis of economic phenomena, CIREM promotes a cold, essential approach to formalization, characterization, and understanding of underlying mechanisms.",
+    "description4": "The CIREM WPS collection publishes innovative research in fundamental and applied mathematics, ranging from microeconomics and macroeconomics to econometrics, statistics, game theory, and general equilibrium models.",
+    "coordonnees": {
+      "titre": "Contact",
+      "adresse": "Intersection of Liberation Ave and Boulevard Triomphal, Kinshasa, DRC",
+      "departement": "Department of Economic Sciences",
+      "bureau": "Office: CIREM",
+      "bp": "P.O. Box 4745 Kinshasa II",
+      "email": "Email",
+      "site": "Website",
+      "telephone": "Phone",
+      "x": "X"
+    },
+    "directeur": "The series is published quarterly under the direction of Professor Jean-Paul Tsasa."
+  }
+}
