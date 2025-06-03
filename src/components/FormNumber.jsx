@@ -49,39 +49,45 @@ function FormNumber() {
     }, [resp]);
 
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setShowLoading(true);
-        setResp(false);
-        const myNombre = evaluateExpression(nombre);
-        try {
-            const response = await axios.get(`https://explorateur-mathematique.onrender.com/api/analyse-nombre/?nombre=${myNombre}`);
-            if (response.data) {
-                
-                // Stockez les données dans un état global ou passez-les via la navigation
+ const handleSubmit = async (e) => {
+    e.preventDefault();
+    setShowLoading(true);
+    setResp(false);
+    const myNombre = evaluateExpression(nombre);
+    
+    try {
+        const response = await axios.get(`https://explorateur-mathematique.onrender.com/api/analyse-nombre/?nombre=${myNombre}`);
+        
+        if (response.data && Array.isArray(response.data.analyse)) {
+            if (response.data.analyse.length > 0) {
                 setProprietes(response.data.analyse);
-                console.log(response.data)
                 setResp(true);
             } else {
-                enqueueSnackbar(t("analysnum.invalide"), {
-                    variant: "error",
+                enqueueSnackbar(t("analysnum.aucune_propriete"), {
+                    variant: "info",
                     anchorOrigin: { vertical: "top", horizontal: "center" },
                 });
             }
-        } catch (error) {
-            console.log(`https://explorateur-mathematique.onrender.com/api/analyse-nombre/?nombre=${myNombre}`)
-            console.error("Erreur API:", error);
-
-            enqueueSnackbar(error.response?.data?.message || t("analysnum.erreur_api"), {
-                variant: "error",
+        } else {
+            enqueueSnackbar(t("analysnum.invalide"), {
+                variant: "warning",
                 anchorOrigin: { vertical: "top", horizontal: "center" },
             });
-        } finally {
-            setShowLoading(false);
         }
-    };
+    } catch (error) {
+        const customMessage = error.response?.data?.message || t("analysnum.erreur_api");
 
-    const handleKeyboardInput = (value) => {
+        enqueueSnackbar(customMessage, {
+            variant: "error",
+            anchorOrigin: { vertical: "top", horizontal: "center" },
+        });
+
+        console.error("Erreur API:", error);
+    } finally {
+        setShowLoading(false);
+    }
+};
+   const handleKeyboardInput = (value) => {
         if (inputRef.current) {
             const input = inputRef.current;
             const start = input.selectionStart; // Position de début du curseur
