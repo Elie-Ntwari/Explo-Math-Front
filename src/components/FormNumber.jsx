@@ -55,7 +55,7 @@ const handleSubmit = async (e) => {
         setResp(false);
         const myNombre = evaluateExpression(nombre);
         try {
-            const response = await axios.get(https://explorateur-mathematique.onrender.com/api/analyse-nombre/?nombre=${myNombre});
+            const response = await axios.get(`https://explorateur-mathematique.onrender.com/api/analyse-nombre/?nombre=${myNombre}`);
             if (response.data) {
                 
                 // Stockez les données dans un état global ou passez-les via la navigation
@@ -69,7 +69,7 @@ const handleSubmit = async (e) => {
                 });
             }
         } catch (error) {
-            console.log(https://explorateur-mathematique.onrender.com/api/analyse-nombre/?nombre=${myNombre})
+
             console.error("Erreur API:", error);
 
             enqueueSnackbar(error.response?.data?.message || t("analysnum.erreur_api"), {
@@ -81,7 +81,6 @@ const handleSubmit = async (e) => {
         }
     };
 
-};
    const handleKeyboardInput = (value) => {
         if (inputRef.current) {
             const input = inputRef.current;
@@ -231,4 +230,3 @@ const handleSubmit = async (e) => {
 }
 
 export default FormNumber;
-
