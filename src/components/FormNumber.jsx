@@ -56,11 +56,11 @@ const handleSubmit = async (e) => {
         const myNombre = evaluateExpression(nombre);
         try {
             const response = await axios.get(`https://explorateur-mathematique.onrender.com/api/analyse-nombre/?nombre=${myNombre}`);
+            console.log(response.data)
             if (response.data) {
                 
                 // Stockez les données dans un état global ou passez-les via la navigation
                 setProprietes(response.data.analyse);
-                console.log(response.data)
                 setResp(true);
             } else {
                 enqueueSnackbar(t("analysnum.invalide"), {
