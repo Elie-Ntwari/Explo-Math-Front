@@ -57,6 +57,7 @@ const handleSubmit = async (e) => {
         try {
             const response = await axios.get(`https://explorateur-mathematique.onrender.com/api/analyse-nombre/?nombre=${myNombre}`);
             console.log(response.data)
+            console.log(`https://explorateur-mathematique.onrender.com/api/analyse-nombre/?nombre=${myNombre}`);
             if (response.data) {
                 
                 // Stockez les données dans un état global ou passez-les via la navigation
