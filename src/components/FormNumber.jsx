@@ -130,7 +130,8 @@ const handleSubmit = async (e) => {
             console.log("Expression formatée :", formattedExpression);
 
             // Utilisation de mathjs pour évaluer l'expression formatée
-            return math.evaluate(formattedExpression);
+            // return math.evaluate(formattedExpression);
+            return formattedExpression;
         } catch (error) {
             console.error("Erreur lors de l'évaluation de l'expression :", error);
             return "Erreur";
