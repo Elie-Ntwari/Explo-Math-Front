@@ -60,7 +60,7 @@ function FormNumber() {
             if (response.data) {
                 // Traitez les données de réponse ici
                 // Stockez les données dans un état global ou passez-les via la navigation
-                setProprietes(response.data.analyse);
+                setProprietes(response.data.analysis);
                 setResp(true);
             } else {
                 enqueueSnackbar(t("analysnum.invalide"), {
