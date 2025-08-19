@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import '../styles/Proprietes.css';
 import myLo from '../assets/undraw_reading-time_gcvc.svg';
 import { FaArrowDown, FaArrowUp, FaCheck, FaTimes } from 'react-icons/fa';
+import { useI18n } from '../contexts/I18nContext';
 
 function Proprietes({ proprietes }) {
   const [expandedItems, setExpandedItems] = useState({});
+  const { t, i18n } = useI18n();
 
   const toggleExpand = (index) => {
     setExpandedItems((prev) => ({
@@ -33,11 +35,11 @@ function Proprietes({ proprietes }) {
 
               {item.belongs === true ? (
                 <div className="value-indicator success">
-                  <FaCheck /> Vérifié
+                  <FaCheck />{i18n.language === 'fr' ? ' Vérifié' : ' Verified'}
                 </div>
               ) : item.belongs === false ? (
                 <div className="value-indicator error">
-                  <FaTimes /> Non vérifié
+                  <FaTimes /> {i18n.language === 'fr' ? 'Non vérifié' : ' Not Verified'}
                 </div>
               ) : (
                 <small>Valeur : {item.belongs?.toString() || 'N/A'}</small>
@@ -57,17 +59,17 @@ function Proprietes({ proprietes }) {
                 <div className="details">
                   {item.definition && (
                     <p>
-                      <strong>Définition :</strong> {item.definition}
+                      <strong>{i18n.language === 'fr' ? 'Définition :' : 'Definition :'}</strong> {item.definition}
                     </p>
                   )}
                   {item.example && (
                     <p>
-                      <strong>Exemples :</strong> {item.example}
+                      <strong>{i18n.language === 'fr' ? 'Exemples :' : 'Examples :'}</strong> {item.example}
                     </p>
                   )}
                   {item.explanation && (
                     <p>
-                      <strong>Explication :</strong> {item.explanation}
+                      <strong>{i18n.language === 'fr' ? 'Explication :' : 'Explanation :'}</strong> {item.explanation}
                     </p>
                   )}
                 </div>
@@ -80,7 +82,7 @@ function Proprietes({ proprietes }) {
                   aria-label={isExpanded ? 'Réduire' : 'Développer'}
                 >
                   {isExpanded ? <FaArrowUp /> : <FaArrowDown />}
-                  {isExpanded ? 'Voir moins' : 'Voir plus'}
+                  {i18n.language === 'fr' ? (isExpanded  ? 'Voir moins' : 'Voir plus') : (isExpanded  ? 'See less' : 'See more')}
                 </button>
               )}
 
