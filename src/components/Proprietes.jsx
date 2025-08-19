@@ -2,54 +2,77 @@ import React, { useState } from 'react';
 import '../styles/Proprietes.css';
 import myLo from '../assets/undraw_reading-time_gcvc.svg';
 import { FaArrowDown, FaArrowUp, FaCheck, FaTimes } from 'react-icons/fa';
-import { useLocation } from 'react-router-dom';
 
-function Proprietes({proprietes}) {
+function Proprietes({ proprietes }) {
   const [expandedItems, setExpandedItems] = useState({});
 
   const toggleExpand = (index) => {
-    setExpandedItems(prev => ({
+    setExpandedItems((prev) => ({
       ...prev,
-      [index]: !prev[index]
+      [index]: !prev[index],
     }));
   };
 
   return (
     <div className="timeline">
-      {Object.entries(proprietes).map(([nom, item], index) => {
+      {Object.entries(proprietes).map(([key, item], index) => {
         const isExpanded = expandedItems[index];
-        const desc = item.description;
-        console.log(desc)
-        const description = desc || '';
+        const description = item.description || '';
         const shouldTruncate = description.length > 100 && !isExpanded;
 
         return (
-          <div key={nom} className={`container ${index % 2 === 0 ? 'left-container' : 'right-container'}`}>
+          <div
+            key={key}
+            className={`container ${
+              index % 2 === 0 ? 'left-container' : 'right-container'
+            }`}
+          >
             <img src={myLo} alt="Illustration" />
             <div className="text-box">
-              <h2>{nom.replace(/_/g, ' ')}</h2>
+              <h2>{item.name || key.replace(/_/g, ' ')}</h2>
 
-              {item.appartient === true ? (
+              {item.belongs === true ? (
                 <div className="value-indicator success">
                   <FaCheck /> Vérifié
                 </div>
-              ) : item.appartient === false ? (
+              ) : item.belongs === false ? (
                 <div className="value-indicator error">
                   <FaTimes /> Non vérifié
                 </div>
               ) : (
-                <small>Valeur : {item.appartient?.toString() || 'N/A'}</small>
+                <small>Valeur : {item.belongs?.toString() || 'N/A'}</small>
               )}
 
-              <p className={`description ${isExpanded ? 'expanded' : 'truncated'}`}>
-                {shouldTruncate ? `${description.substring(0, 100)}...` : description}
+              <p
+                className={`description ${
+                  isExpanded ? 'expanded' : 'truncated'
+                }`}
+              >
+                {shouldTruncate
+                  ? `${description.substring(0, 100)}...`
+                  : description}
               </p>
-              {isExpanded && item.explication && (
-                <div className="explication">
-                  <strong>Explication :</strong>
-                  <p>{item.explication}</p>
+
+              {isExpanded && (
+                <div className="details">
+                  {item.definition && (
+                    <p>
+                      <strong>Définition :</strong> {item.definition}
+                    </p>
+                  )}
+                  {item.example && (
+                    <p>
+                      <strong>Exemples :</strong> {item.example}
+                    </p>
+                  )}
+                  {item.explanation && (
+                    <p>
+                      <strong>Explication :</strong> {item.explanation}
+                    </p>
+                  )}
                 </div>
               )}
+
               {description.length > 10 && (
                 <button
                   onClick={() => toggleExpand(index)}
@@ -61,7 +84,13 @@ function Proprietes({proprietes}) {
                 </button>
               )}
 
-              <span className={`${index % 2 === 0 ? 'left-container-arrow' : 'right-container-arrow'}`}></span>
+              <span
+                className={`${
+                  index % 2 === 0
+                    ? 'left-container-arrow'
+                    : 'right-container-arrow'
+                }`}
+              ></span>
             </div>
           </div>
         );
