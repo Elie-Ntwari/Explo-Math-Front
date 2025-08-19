@@ -21,10 +21,7 @@ function FormNumber() {
     const [proprietes, setProprietes] = useState([])
     const inputRef = useRef(null);
     const [resp, setResp] = useState(false);
-    
-    const { t } = useI18n();
-
-
+    const { t, i18n, changeMyLanguage } = useI18n();
     const [randomNumbers, setRandomNumbers] = useState([]);
 
     useEffect(() => {
@@ -49,19 +46,19 @@ function FormNumber() {
     }, [resp]);
 
 
-const handleSubmit = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setShowLoading(true);
         setResp(false);
         const myNombre = evaluateExpression(nombre);
         try {
-           const response = await axios.get(`https://explorateur-mathematique.onrender.com/api/analyse-nombre/?nombre=${myNombre}`, {
+            const response = await axios.get(`https://explorateur-mathematique.onrender.com/api/analyse-nombre/?nombre=${myNombre}&lang=${i18n.language}`, {
                 headers: {
-                    'Accept-Language': 'en'
+                    'Accept-Language': i18n.language
                 }
             });
             if (response.data) {
-                
+                // Traitez les données de réponse ici
                 // Stockez les données dans un état global ou passez-les via la navigation
                 setProprietes(response.data.analyse);
                 setResp(true);
@@ -84,7 +81,7 @@ const handleSubmit = async (e) => {
         }
     };
 
-   const handleKeyboardInput = (value) => {
+    const handleKeyboardInput = (value) => {
         if (inputRef.current) {
             const input = inputRef.current;
             const start = input.selectionStart; // Position de début du curseur
@@ -146,7 +143,7 @@ const handleSubmit = async (e) => {
             <div className="container-parent" style={{ marginTop: showKeyboard ? "190px" : "0px" }}>
                 <div className="formContainer" >
                     <div className="presntation">
-                       <h1>{t("analysnum.titre")}</h1>
+                        <h1>{t("analysnum.titre")}</h1>
                         <p>{t("analysnum.sous_titre")}</p>
                     </div>
 
@@ -169,7 +166,7 @@ const handleSubmit = async (e) => {
                                 onChange={(e) => setNombre(e.target.value.replace(/,/g, "."))}
                             />
                             <button type="submit">
-                                 {t("analysnum.bouton")} <FaArrowRight style={{ marginLeft: '8px' }} />
+                                {t("analysnum.bouton")} <FaArrowRight style={{ marginLeft: '8px' }} />
                             </button>
                         </form>
                     </div>
@@ -222,7 +219,7 @@ const handleSubmit = async (e) => {
                 <div className="myLoader-box">
                     <TbMathFunction className="loader-icon rotate pulse" />
                     <h1 className="analyzing-text">
-                       {t("analysnum.analyse_en_cours")}<span className="dot-animation">...</span>
+                        {t("analysnum.analyse_en_cours")}<span className="dot-animation">...</span>
                     </h1>
                     <p className="info-progress">{t("analysnum.extraction")}</p>
                 </div>
