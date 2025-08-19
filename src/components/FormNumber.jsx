@@ -22,6 +22,7 @@ function FormNumber() {
     const inputRef = useRef(null);
     const [resp, setResp] = useState(false);
     const { t, i18n, changeMyLanguage } = useI18n();
+    const [language, setLanguage] = useState(i18n.language);
     const [randomNumbers, setRandomNumbers] = useState([]);
 
     useEffect(() => {
@@ -37,7 +38,9 @@ function FormNumber() {
         setRandomNumbers(generateUniqueNumbers());
     }, []);
 
-
+    useEffect(() => {
+        handleSubmit();
+    }, [i18n.language]);
 
     useEffect(() => {
         if (resp) {
