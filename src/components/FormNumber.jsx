@@ -50,7 +50,7 @@ function FormNumber() {
 
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        if (e) e.preventDefault(); 
         setShowLoading(true);
         setResp(false);
         const myNombre = evaluateExpression(nombre);
