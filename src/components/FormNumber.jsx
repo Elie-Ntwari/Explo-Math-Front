@@ -50,7 +50,7 @@ function FormNumber() {
 
 
     const handleSubmit = async (e) => {
-        if (e) e.preventDefault(); 
+        if (e) e.preventDefault();
         setShowLoading(true);
         setResp(false);
         const myNombre = evaluateExpression(nombre);
@@ -87,24 +87,29 @@ function FormNumber() {
     const handleKeyboardInput = (value) => {
         if (inputRef.current) {
             const input = inputRef.current;
-            const start = input.selectionStart; // Position de début du curseur
-            const end = input.selectionEnd; // Position de fin du curseur
+            const start = input.selectionStart;
+            const end = input.selectionEnd;
 
-            // Insère la valeur à la position du curseur
-            const newValue =
-                nombre.substring(0, start) + value + nombre.substring(end);
+            let newValue = nombre.substring(0, start) + value + nombre.substring(end);
 
-            // Remplace les virgules par des points
+            // Nettoyage des virgules → points
             const sanitizedValue = newValue.replace(/,/g, ".");
 
             setNombre(sanitizedValue);
 
-            // Met à jour la position du curseur après l'insertion
             setTimeout(() => {
-                input.selectionStart = input.selectionEnd = start + value.length;
+                if (value.includes("()")) {
+                    // Place le curseur à l'intérieur des parenthèses
+                    const pos = start + value.indexOf("(") + 1;
+                    input.selectionStart = input.selectionEnd = pos;
+                } else {
+                    // Sinon juste après le symbole
+                    input.selectionStart = input.selectionEnd = start + value.length;
+                }
             }, 0);
         }
     };
+
 
     const handleDelete = () => {
         setNombre((prev) => prev.slice(0, -1)); // Supprime le dernier caractère
@@ -166,8 +171,15 @@ function FormNumber() {
                                 placeholder={t("analysnum.placeholder")}
                                 required
                                 value={nombre}
-                                onChange={(e) => setNombre(e.target.value.replace(/,/g, "."))}
+                                onChange={(e) => {
+                                    // Autoriser uniquement chiffres, opérateurs et symboles
+                                    const regex = /^[0-9+\-*/^().,πesincotaglrnb√]*$/;
+                                    if (regex.test(e.target.value)) {
+                                        setNombre(e.target.value.replace(/,/g, "."));
+                                    }
+                                }}
                             />
+
                             <button type="submit">
                                 {t("analysnum.bouton")} <FaArrowRight style={{ marginLeft: '8px' }} />
                             </button>
