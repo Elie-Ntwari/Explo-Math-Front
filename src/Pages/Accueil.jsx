@@ -11,7 +11,7 @@ import { useI18n } from "../contexts/I18nContext";
 
 
 function Accueil() {
-   const {t} = useI18n();
+    const { t } = useI18n();
 
     const navigate = useNavigate();
     const [showScrollToTop, setShowScrollToTop] = useState(false); // État pour le bouton flottant
@@ -68,11 +68,13 @@ function Accueil() {
                         </button>
                     </div>
                 </div>
-                <img
-                    src={fondImg}
-                    alt="Illustration mathématique"
-                    className="hero-image"
-                />
+                <dotlottie-wc
+                    src="https://lottie.host/6d58d41b-22d9-4a65-a89f-4c81367ff1dc/fB8nEUMCYL.lottie"
+                    style={{ width: "500px", height: "500px" }}
+                    speed="1"
+                    autoplay
+                    loop
+                ></dotlottie-wc>
             </section>
 
             {/* Features Section */}
@@ -130,9 +132,6 @@ function Accueil() {
                 </div>
             </section>
 
-            {/* Testimonial Section */}
-            {/* <TestimonialCarousel/> */}
-
             {/* Final CTA Section */}
             <section id="final-cta" className="final-cta">
 
@@ -144,10 +143,33 @@ function Accueil() {
 
             </section>
             {/* Footer */}
-            <section className="final-cta" style={{ background: "#222" }}>
-                <p className="final-cta-subtitle" style={{ fontSize: "20px", color: "#EEE" }}>
-                    {t('accueil.footer_text')}
-                </p>
+            <section className="final-cta" style={{ background: "#222", padding: "30px 20px" }}>
+                <div style={{ maxWidth: "1200px", margin: "0 auto", textAlign: "center" }}>
+                    
+
+                    {/* Liens utiles */}
+                    <div style={{ marginBottom: "15px" }}>
+                        <a href="/about" style={{ color: "#BBB", margin: "0 15px", textDecoration: "none" }}>
+                            {t('navbar.about')}
+                        </a>
+                        <a href="/contact" style={{ color: "#BBB", margin: "0 15px", textDecoration: "none" }}>
+                            {t('about.coordonnees.titre')}
+                        </a>
+                        <a href="/" style={{ color: "#BBB", margin: "0 15px", textDecoration: "none" }}>
+                            {t('navbar.home')}
+                        </a>
+                    </div>
+
+                    {/* Coordonnées */}
+                    <p style={{ fontSize: "14px", color: "#AAA", margin: 0 }}>
+                        {t('about.coordonnees.adresse')} <br />
+                        {t('about.coordonnees.bp')} | {t('about.coordonnees.telephone')} | {t('about.coordonnees.email')}
+                    </p>
+                    {/* Texte principal */}
+                    <p className="final-cta-subtitle" style={{ fontSize: "15px", color: "#EEE", marginBottom: "10px" }}>
+                        {t('accueil.footer_text')}
+                    </p>
+                </div>
             </section>
 
             {/* Bouton flottant pour remonter en haut */}

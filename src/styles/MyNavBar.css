@@ -1,6 +1,6 @@
 /* Conteneur de la navbar */
 .mynavbarContainer {
-    position: fixed;
+  position: fixed;
   width: 100%;
   height: 80px;
   display: flex;
@@ -14,7 +14,7 @@
 }
 
 /* Image du logo */
-.mynavbarContainer img {
+.mynavbarContainer .logo {
   width: 98px;
   margin-top: 12px;
   margin-left: 10px;
@@ -138,8 +138,7 @@
 }
 
 button{
-  font-family: 'Poppins', sans-serif;
-
+ font-family: "Lora", serif;
 }
 
 

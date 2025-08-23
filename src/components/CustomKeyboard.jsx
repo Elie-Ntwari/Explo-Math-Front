@@ -1,4 +1,3 @@
-import React from "react";
 import "../styles/FormNumber.css";
 import { useI18n } from "../contexts/I18nContext";
 

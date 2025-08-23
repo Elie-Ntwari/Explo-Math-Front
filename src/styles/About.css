@@ -1,7 +1,6 @@
 /* Styles pour la page À propos */
 
 .about-container {
-  font-family: 'Nunito', sans-serif;
   background-color: var(--background-color);
   min-height: 100vh;
   color: var(--text-color);

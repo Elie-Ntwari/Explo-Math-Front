@@ -16,13 +16,7 @@ function About() {
     return (
         <div className="about-container">
             <MyNavBar />
-            <div className="about-content">
-                <button 
-                    className="back-button" 
-                    onClick={() => handleNavigate('/')}
-                >
-                    {t('about.retour')}
-                </button>
+            <div className="about-content" style={{ paddingTop: '8rem' }}>
 
                 <h1 className="about-title">{t('about.titre')}</h1>
                 
@@ -39,9 +33,9 @@ function About() {
                         <p>{t('about.coordonnees.bureau')}</p>
                         <p>{t('about.coordonnees.bp')}</p>
                         <p>{t('about.coordonnees.email')} : <a href="mailto:cirem@upc.ac.cd">cirem@upc.ac.cd</a></p>
-                        <p>{t('about.coordonnees.site')} : <a href="https://upc.ac.cd" target="_blank" rel="noopener noreferrer">https://upc.ac.cd</a></p>
+                        <p>{t('about.coordonnees.site')} : <a href="https://cirem.upc.ac.cd" target="_blank" rel="noopener noreferrer">https://cirem.upc.ac.cd</a></p>
                         <p>{t('about.coordonnees.telephone')} : +243 81 94 93 358</p>
-                        <p>{t('about.coordonnees.x')} : <a href="https://twitter.com/CIREMath" target="_blank" rel="noopener noreferrer">@CIREMath</a></p>
+                        <p>{t('about.coordonnees.x')} : <a href="https://x.com/CIREMath" target="_blank" rel="noopener noreferrer">@CIREMath</a></p>
                     </div>
 
                     <div className="director-info">
